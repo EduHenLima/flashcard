@@ -1,0 +1,23 @@
+service: aws-python # NOTE: update this with your service name
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+
+  environment:
+    FOO: 'abc'
+#
+#functions:
+#  cards:
+#    handler: handler.hello
+
+# 'functions' in serverless.yml
+functions:
+  card: # Function name
+    handler: src/cards/createCards.create # Reference to file handler.js & exported function 'users'
+    events: # All events associated with this function
+      - httpApi: 'POST /users/create'
+#        - httpApi: 'PUT /users/update'
+#        - httpApi: 'DELETE /users/delete'
