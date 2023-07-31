@@ -7,11 +7,7 @@ provider:
   runtime: python3.9
 
   environment:
-    FOO: 'abc'
-#
-#functions:
-#  cards:
-#    handler: handler.hello
+    FOO: 'abcdedasdasdas'
 
 # 'functions' in serverless.yml
 functions:
