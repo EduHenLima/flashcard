@@ -6,4 +6,7 @@
 
 
 Commands:
-- npm i serverless-mysql
+* pip install mysql-connector-python
+
+Invoke:
+* Ping: serverless invoke local --function ping

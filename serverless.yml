@@ -7,12 +7,17 @@ provider:
   runtime: python3.9
 
   environment:
-    FOO: 'abcdedasdasdas'
+    host: 'localhost'
+    user: 'edu'
+    password: 'flashcards'
+    database: 'flashcards'
 
 # 'functions' in serverless.yml
 functions:
+  ping:
+    handler: src/API/ping.pingDatabase # Reference to file handler.js & exported function 'users'
   card: # Function name
-    handler: src/cards/createCards.create # Reference to file handler.js & exported function 'users'
+    handler: src/API/cards/createCards.create # Reference to file handler.js & exported function 'users'
     events: # All events associated with this function
       - httpApi: 'POST /users/create'
 #        - httpApi: 'PUT /users/update'
