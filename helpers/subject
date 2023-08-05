@@ -14,7 +14,6 @@ serverless invoke local --function create_subject --data '{
 serverless invoke local --function delete_subject --data '{"id_assunto": 1}'
 
 --Update
--- Create subject
 serverless invoke local --function update_subject --data '{
     "id_assunto": 1,
     "id_categoria": 5,

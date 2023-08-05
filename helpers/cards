@@ -1,0 +1,22 @@
+-- Return all cards
+serverless invoke local --function get_cards
+
+-- Create cards
+serverless invoke local --function create_cards --data '{
+    "id_pergunta": 2,
+    "id_resposta": 2,
+    "id_assunto": 2,
+    "ativo": 1
+}'
+
+-- Delete cards
+serverless invoke local --function delete_cards --data '{"id_cards": 1}'
+
+--Update
+serverless invoke local --function update_cards --data '{
+    "id_cards": 2,
+    "id_pergunta": 2,
+    "id_resposta": 2,
+    "id_assunto": 2,
+    "ativo": 0
+}'

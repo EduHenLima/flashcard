@@ -10,7 +10,6 @@ serverless invoke local --function create_response --data '{
 serverless invoke local --function delete_response --data '{"id_resposta": 1}'
 
 --Update
--- Create response
 serverless invoke local --function update_response --data '{
     "id_resposta": 2,
     "resposta": "Update resposta"

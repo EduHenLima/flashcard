@@ -18,6 +18,16 @@ functions:
   ping:
     handler: src/API/ping.pingDatabase
 
+  # To manager cards
+  create_cards:
+    handler: src/API/cards/createCards.create
+  get_cards:
+    handler: src/API/cards/readCards.read
+  delete_cards:
+    handler: src/API/cards/deleteCards.delete
+  update_cards:
+    handler: src/API/cards/updateCards.update
+
   # To manager subject
   create_subject:
     handler: src/API/subject/createSubject.create
