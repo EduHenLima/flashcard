@@ -14,13 +14,26 @@ provider:
 
 # 'functions' in serverless.yml
 functions:
+  # to teste application
   ping:
-    handler: src/API/ping.pingDatabase # Reference to file handler.js & exported function 'users'
+    handler: src/API/ping.pingDatabase
+
+  # To manager category
   create_category:
-    handler: src/API/category/createCategory.create # Reference to file handler.js & exported function 'users'
+    handler: src/API/category/createCategory.create
   get_category:
     handler: src/API/category/readCategory.read
   delete_category:
     handler: src/API/category/deleteCategory.delete
   update_category:
     handler: src/API/category/updateCategory.update
+
+  # To manager response
+  create_response:
+    handler: src/API/response/createResponse.create
+  get_response:
+    handler: src/API/response/readResponse.read
+  delete_response:
+    handler: src/API/response/deleteResponse.delete
+  update_response:
+    handler: src/API/response/updateResponse.update

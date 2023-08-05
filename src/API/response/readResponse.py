@@ -4,7 +4,7 @@ from src.Model.database import get_connection
 def read(event, context):
     connection = get_connection()
     mycursor = connection.cursor()
-    mycursor.execute("SELECT * FROM categorias")
+    mycursor.execute("SELECT * FROM resposta")
     myresult = mycursor.fetchone()
 
     body = {
