@@ -1,10 +1,18 @@
-import json
+from src.Model.database import get_connection
 
 
-def created(event, context):
+def create(req, context):
+    connection = get_connection()
+    mycursor = connection.cursor()
+
+    sql = "INSERT INTO categorias (id_usuario,nome_categoria,descricao,ativo) VALUES (%s,%s,%s,%s)"
+    val = (req['id_usuario'], req['nome_categoria'], req['descricao'], req['ativo'])
+    mycursor.execute(sql, val)
+    connection.commit()
+
     body = {
-        "message": "Go Serverless v3.0! Your function executed successfully!",
-        "input": event,
+        "message": "Create!",
+        'Quantity': mycursor.rowcount,
     }
 
-    return {"statusCode": 200, "body": json.dumps(body)}
+    return {"statusCode": 200, "body": body}

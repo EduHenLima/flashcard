@@ -16,9 +16,11 @@ provider:
 functions:
   ping:
     handler: src/API/ping.pingDatabase # Reference to file handler.js & exported function 'users'
-  card: # Function name
-    handler: src/API/cards/createCards.create # Reference to file handler.js & exported function 'users'
-    events: # All events associated with this function
-      - httpApi: 'POST /users/create'
-#        - httpApi: 'PUT /users/update'
-#        - httpApi: 'DELETE /users/delete'
+  card:
+    handler: src/API/cards.sql/createCards.create # Reference to file handler.js & exported function 'users'
+  get_category:
+    handler: src/API/category/readCategory.read
+  delete_category:
+    handler: src/API/category/deleteCategory.delete
+  update_category:
+    handler: src/API/category/updateCategory.update

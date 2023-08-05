@@ -1,4 +1,3 @@
-import os
 from ..Model.database import get_connection
 
 

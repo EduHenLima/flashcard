@@ -1,0 +1,17 @@
+ALTER TABLE `categorias`
+CHANGE COLUMN `data_atualizacao` `data_atualizacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `categorias`
+CHANGE COLUMN `data_criacao` `data_criacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `cards`
+CHANGE COLUMN `data_atualizacao` `data_atualizacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `cards`
+CHANGE COLUMN `data_criacao` `data_criacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `categorias`
+CHANGE COLUMN `data_atualizacao` `data_atualizacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `categorias`
+CHANGE COLUMN `data_criacao` `data_criacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
