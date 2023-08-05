@@ -11,7 +11,7 @@ def update(req, context):
     connection.commit()
 
     body = {
-        "message": "Updated!",
+        "message": "Success!",
         'Quantity': mycursor.rowcount,
     }
 

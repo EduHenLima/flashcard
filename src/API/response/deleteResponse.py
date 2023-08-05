@@ -12,7 +12,7 @@ def delete(req, context):
     connection.commit()
 
     body = {
-        "message": "Deteled",
+        "message": "Success!",
         'quantity': mycursor.rowcount,
     }
 

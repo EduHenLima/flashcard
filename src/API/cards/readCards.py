@@ -5,7 +5,7 @@ def read(event, context):
     connection = get_connection()
     mycursor = connection.cursor()
     mycursor.execute("SELECT * FROM cards")
-    myresult = mycursor.fetchone()
+    myresult = mycursor.fetchall()
 
     body = {
         "message": "Success",

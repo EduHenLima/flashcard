@@ -11,7 +11,7 @@ def create(req, context):
     connection.commit()
 
     body = {
-        "message": "Create!",
+        "message": "Success!",
         'Quantity': mycursor.rowcount,
     }
 

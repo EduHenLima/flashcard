@@ -5,10 +5,10 @@ def read(event, context):
     connection = get_connection()
     mycursor = connection.cursor()
     mycursor.execute("SELECT * FROM resposta")
-    myresult = mycursor.fetchone()
+    myresult = mycursor.fetchall()
 
     body = {
-        "message": "Success",
+        "message": "Success!",
         "input": myresult,
     }
 
