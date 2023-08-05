@@ -1,0 +1,17 @@
+-- Return all question
+serverless invoke local --function get_question
+
+-- Create question
+serverless invoke local --function create_question --data '{
+    "pergunta": "pergunta teste"
+}'
+
+-- Delete question
+serverless invoke local --function delete_question --data '{"id_pergunta": 1}'
+
+--Update
+-- Create question
+serverless invoke local --function update_question --data '{
+    "id_pergunta": 1,
+    "pergunta": "Update pergunta"
+}'

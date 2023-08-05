@@ -5,8 +5,8 @@ def create(req, context):
     connection = get_connection()
     mycursor = connection.cursor()
 
-    sql = "INSERT INTO categorias (id_usuario,nome_categoria,descricao,ativo) VALUES (%s,%s,%s,%s)"
-    val = (req['id_usuario'], req['nome_categoria'], req['descricao'], req['ativo'])
+    sql = "INSERT INTO pergunta (pergunta) VALUES (%s)"
+    val = (req['pergunta'],)
     mycursor.execute(sql, val)
     connection.commit()
 

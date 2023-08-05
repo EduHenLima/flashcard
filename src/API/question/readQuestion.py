@@ -4,11 +4,11 @@ from src.Model.database import get_connection
 def read(event, context):
     connection = get_connection()
     mycursor = connection.cursor()
-    mycursor.execute("SELECT * FROM categorias")
+    mycursor.execute("SELECT * FROM pergunta")
     myresult = mycursor.fetchone()
 
     body = {
-        "message": "Success",
+        "message": "Visualized",
         "input": myresult,
     }
 

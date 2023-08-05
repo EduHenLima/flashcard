@@ -37,3 +37,13 @@ functions:
     handler: src/API/response/deleteResponse.delete
   update_response:
     handler: src/API/response/updateResponse.update
+
+  # To manager response
+  create_question:
+    handler: src/API/question/createQuestion.create
+  get_question:
+    handler: src/API/question/readQuestion.read
+  delete_question:
+    handler: src/API/question/deleteQuestion.delete
+  update_question:
+    handler: src/API/question/updateQuestion.update
