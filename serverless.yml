@@ -16,8 +16,8 @@ provider:
 functions:
   ping:
     handler: src/API/ping.pingDatabase # Reference to file handler.js & exported function 'users'
-  card:
-    handler: src/API/cards.sql/createCards.create # Reference to file handler.js & exported function 'users'
+  create_category:
+    handler: src/API/category/createCategory.create # Reference to file handler.js & exported function 'users'
   get_category:
     handler: src/API/category/readCategory.read
   delete_category:
