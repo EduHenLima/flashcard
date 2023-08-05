@@ -18,6 +18,16 @@ functions:
   ping:
     handler: src/API/ping.pingDatabase
 
+  # To manager subject
+  create_subject:
+    handler: src/API/subject/createSubject.create
+  get_subject:
+    handler: src/API/subject/readSubject.read
+  delete_subject:
+    handler: src/API/subject/deleteSubject.delete
+  update_subject:
+    handler: src/API/subject/updateSubject.update
+
   # To manager category
   create_category:
     handler: src/API/category/createCategory.create
@@ -38,7 +48,7 @@ functions:
   update_response:
     handler: src/API/response/updateResponse.update
 
-  # To manager response
+  # To manager question
   create_question:
     handler: src/API/question/createQuestion.create
   get_question:

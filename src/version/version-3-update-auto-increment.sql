@@ -12,3 +12,6 @@ CHANGE COLUMN `id_resposta` `id_resposta` INT NOT NULL AUTO_INCREMENT ;
 
 ALTER TABLE `flashcards`.`usuarios`
 CHANGE COLUMN `id_usuário` `id_usuário` INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `flashcards`.`assuntos`
+CHANGE COLUMN `id_assunto` `id_assunto` INT NOT NULL AUTO_INCREMENT ;

@@ -5,7 +5,7 @@ def delete(req, context):
     connection = get_connection()
     mycursor = connection.cursor()
 
-    sql = "DELETE FROM categorias where id_categoria = %s"
+    sql = "DELETE FROM categorias WHERE id_categoria = %s"
     val = (req['id_categoria'],)
 
     mycursor.execute(sql, val)

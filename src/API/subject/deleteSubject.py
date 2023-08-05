@@ -1,10 +1,19 @@
-import json
+from src.Model.database import get_connection
 
 
-def delete(event, context):
+def delete(req, context):
+    connection = get_connection()
+    mycursor = connection.cursor()
+
+    sql = "DELETE FROM assuntos WHERE id_assunto = %s"
+    val = (req['id_assunto'],)
+
+    mycursor.execute(sql, val)
+    connection.commit()
+
     body = {
-        "message": "Go Serverless v3.0! Your function executed successfully!",
-        "input": event,
+        "message": "Deteled",
+        'quantity': mycursor.rowcount,
     }
 
-    return {"statusCode": 200, "body": json.dumps(body)}
+    return {"statusCode": 200, "body": body}

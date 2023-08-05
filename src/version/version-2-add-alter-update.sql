@@ -15,3 +15,9 @@ CHANGE COLUMN `data_atualizacao` `data_atualizacao` TIMESTAMP NULL DEFAULT CURRE
 
 ALTER TABLE `categorias`
 CHANGE COLUMN `data_criacao` `data_criacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `assuntos`
+CHANGE COLUMN `data_atualizacao` `data_atualizacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `assuntos`
+CHANGE COLUMN `data_criacao` `data_criacao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
