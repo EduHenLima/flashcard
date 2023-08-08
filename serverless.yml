@@ -19,9 +19,8 @@ functions:
   # to teste application
   ping:
     handler: src/API/ping.pingDatabase
-      - httpApi:
-         path: /ping
-         method: GET
+    events: # All events associated with this function
+      - httpApi: 'POST /ping'
 
   # To manager cards
   create_cards:
