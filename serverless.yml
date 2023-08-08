@@ -28,15 +28,15 @@ functions:
   update_cards:
     handler: src/API/cards/updateCards.update
 
-  # To manager subject
-  create_subject:
-    handler: src/API/subject/createSubject.create
-  get_subject:
-    handler: src/API/subject/readSubject.read
-  delete_subject:
-    handler: src/API/subject/deleteSubject.delete
-  update_subject:
-    handler: src/API/subject/updateSubject.update
+  # To manager topic
+  create_topic:
+    handler: src/API/topic/createtopic.create
+  get_topic:
+    handler: src/API/topic/readTopic.read
+  delete_topic:
+    handler: src/API/topic/deleteTopic.delete
+  update_topic:
+    handler: src/API/topic/updateTopic.update
 
   # To manager category
   create_category:
@@ -48,22 +48,13 @@ functions:
   update_category:
     handler: src/API/category/updateCategory.update
 
-  # To manager response
-  create_response:
-    handler: src/API/response/createResponse.create
-  get_response:
-    handler: src/API/response/readResponse.read
-  delete_response:
-    handler: src/API/response/deleteResponse.delete
-  update_response:
-    handler: src/API/response/updateResponse.update
+  # To manager login
+  create_login:
+    handler: src/API/login/createLogins.create
+  get_login:
+    handler: src/API/login/readLogins.read
+  delete_login:
+    handler: src/API/login/deleteLogins.delete
+  update_login:
+    handler: src/API/login/updateLogins.update
 
-  # To manager question
-  create_question:
-    handler: src/API/question/createQuestion.create
-  get_question:
-    handler: src/API/question/readQuestion.read
-  delete_question:
-    handler: src/API/question/deleteQuestion.delete
-  update_question:
-    handler: src/API/question/updateQuestion.update

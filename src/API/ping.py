@@ -1,11 +1,13 @@
-from ..Model.database import get_connection
+from sqlalchemy.exc import OperationalError
+from src.Model.Base.database import get_connection
 
 
 def pingDatabase(event, context):
+    engine = get_connection()
 
-    ping = (get_connection().ping(reconnect=False, attempts=1, delay=0))
+    try:
+        engine.connect()
 
-    if ping is None:
-        return "Pong"
-    else:
-        return "The connection is refused"
+        return print("Conexão bem-sucedida! O banco de dados está acessível.")
+    except OperationalError as e:
+        return print(f"Erro na conexão: {e}")

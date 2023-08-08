@@ -1,9 +1,11 @@
+import json
+
 from src.Model.Base.database import get_session
-from src.Model.categorias import Categorys
+from src.Model.logins import Login
 
 
 def read(event, context):
-    categorys = get_session().query(Categorys)
+    categorys = get_session().query(Login)
     for category in categorys:
         print(vars(category))
 
@@ -13,3 +15,4 @@ def read(event, context):
     }
 
     return {"statusCode": 200, "body": body}
+

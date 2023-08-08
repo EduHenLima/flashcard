@@ -1,4 +1,4 @@
-from src.Model.database import get_connection
+from src.Model.Base.database import get_connection
 
 
 def update(req, context):

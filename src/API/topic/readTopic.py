@@ -1,15 +1,15 @@
 from src.Model.Base.database import get_session
-from src.Model.cards import Cards
+from src.Model.assuntos import Topics
 
 
 def read(event, context):
-    cards = get_session().query(Cards)
-    for card in cards:
-        print(vars(card))
+    topics = get_session().query(Topics)
+    for topic in topics:
+        print(vars(topic))
 
     body = {
         "message": "Success!",
-        "input": cards,
+        "input": topics,
     }
 
     return {"statusCode": 200, "body": body}
