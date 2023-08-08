@@ -8,9 +8,9 @@ class Cards(Base):
 
     id_cards = Column(Integer, primary_key=True)
     id_assunto = Column(Integer, primary_key=True)
-    pergunta = Column(String(255), nullable=False)
-    resposta = Column(String(255), nullable=False)
-    ativo = Column(Integer, primary_key=False)
-    data_criacao = Column(Integer, primary_key=False)
-    data_atualizacao = Column(Integer, primary_key=False)
+    pergunta = Column(String(255), nullable=True)
+    resposta = Column(String(255), nullable=True)
+    ativo = Column(Integer, nullable=True)
+    data_criacao = Column(Integer, primary_key=True)
+    data_atualizacao = Column(Integer, primary_key=True)
 

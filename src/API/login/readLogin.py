@@ -1,5 +1,5 @@
 from src.Model.Base.database import get_session
-from src.Model.logins import Login
+from src.Model.login import Login
 
 
 def read(event, context):

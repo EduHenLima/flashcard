@@ -56,11 +56,11 @@ functions:
 
   # To manager login
   create_login:
-    handler: src/API/login/createLogins.create
+    handler: src/API/login/createLogin.create
   get_login:
-    handler: src/API/login/readLogins.read
+    handler: src/API/login/readLogin.read
   delete_login:
-    handler: src/API/login/deleteLogins.delete
+    handler: src/API/login/deleteLogin.delete
   update_login:
-    handler: src/API/login/updateLogins.update
+    handler: src/API/login/updateLogin.update
 

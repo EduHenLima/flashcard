@@ -7,10 +7,10 @@ class Topics(Base):
     __tablename__ = 'assuntos'
 
     id_assunto = Column(Integer, primary_key=True)
-    id_categoria = Column(Integer, primary_key=False)
-    nome_assunto = Column(Integer, primary_key=False)
-    descricao = Column(Integer, primary_key=False)
-    ativo = Column(Integer, primary_key=False)
-    data_criacao = Column(Integer, primary_key=False)
-    data_atualizacao = Column(Integer, primary_key=False)
+    id_categoria = Column(Integer, nullable=True)
+    nome_assunto = Column(Integer, nullable=False)
+    descricao = Column(Integer, nullable=True)
+    ativo = Column(Integer, nullable=True)
+    data_criacao = Column(Integer, nullable=True)
+    data_atualizacao = Column(Integer, nullable=True)
 
