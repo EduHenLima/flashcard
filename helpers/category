@@ -9,19 +9,19 @@ serverless invoke local --function get_category_by_user --data '{
 -- Create category
 serverless invoke local --function create_category --data '{
     "id_usuario": 1,
-    "nome_categoria": "Ingles",
-    "descricao": "Aulas de Inglês",
+    "nome_categoria": "Create Categoria",
+    "descricao": "Create Descrição",
     "ativo": 1
 }'
 
 -- Delete category
-serverless invoke local --function delete_category --data '{"id_categoria": 1}'
+serverless invoke local --function delete_category --data '{"id_categoria": 11}'
 
 --Update
 serverless invoke local --function update_category --data '{
     "id_categoria": 5,
     "id_usuario": 1,
-    "nome_categoria": "Ingles Update",
-    "descricao": "Aulas de Inglês",
+    "nome_categoria": "Update Categoria",
+    "descricao": "Update Descrição",
     "ativo": 0
 }'

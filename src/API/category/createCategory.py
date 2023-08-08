@@ -1,18 +1,21 @@
-from src.Model.Base.database import get_connection
+from sqlalchemy import insert
+
+from src.Model.Base.database import commit_insert
+from src.Model.categorias import Categorys
 
 
 def create(req, context):
-    connection = get_connection()
-    mycursor = connection.cursor()
 
-    sql = "INSERT INTO categorias (id_usuario,nome_categoria,descricao,ativo) VALUES (%s,%s,%s,%s)"
-    val = (req['id_usuario'], req['nome_categoria'], req['descricao'], req['ativo'])
-    mycursor.execute(sql, val)
-    connection.commit()
+    commit_insert(insert(Categorys).values(id_usuario=req['id_usuario'], nome_categoria=req['nome_categoria'], descricao=req['descricao'], ativo=req['ativo']))
 
     body = {
         "message": "Success!",
-        'Quantity': mycursor.rowcount,
+        "Created": {
+            "id_usuario": req['id_usuario'],
+            "nome_categoria": req['nome_categoria'],
+            "descricao": req['descricao'],
+            "ativo":  req['ativo']
+        },
     }
 
     return {"statusCode": 200, "body": body}
