@@ -1,6 +1,11 @@
 -- Return all Topic
 serverless invoke local --function get_topic
 
+-- by category
+serverless invoke local --function get_topic_by_category --data '{
+    "id_categoria": 5
+}'
+
 -- Create Topic
 serverless invoke local --function create_Topic --data '{
     "id_categoria": 5,

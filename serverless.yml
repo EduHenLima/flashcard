@@ -33,6 +33,8 @@ functions:
     handler: src/API/topic/createtopic.create
   get_topic:
     handler: src/API/topic/readTopic.read
+  get_topic_by_category:
+    handler: src/API/topic/getTopicByCategory.get_topic_by_category
   delete_topic:
     handler: src/API/topic/deleteTopic.delete
   update_topic:
@@ -43,6 +45,8 @@ functions:
     handler: src/API/category/createCategory.create
   get_category:
     handler: src/API/category/readCategory.read
+  get_category_by_user:
+    handler: src/API/category/getCategoryByUser.get_category_by_user
   delete_category:
     handler: src/API/category/deleteCategory.delete
   update_category:

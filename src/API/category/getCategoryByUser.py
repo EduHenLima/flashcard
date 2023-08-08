@@ -1,9 +1,9 @@
 from src.Model.Base.database import get_session
-from src.Model.logins import Login
+from src.Model.categorias import Categorys
 
 
-def read(event, context):
-    categorys = get_session().query(Login)
+def get_category_by_user(req, context):
+    categorys = get_session().query(Categorys).filter(Categorys.id_usuario == req['id_usuario'])
     for category in categorys:
         print(vars(category))
 
@@ -13,4 +13,3 @@ def read(event, context):
     }
 
     return {"statusCode": 200, "body": body}
-
