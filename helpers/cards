@@ -8,9 +8,9 @@ serverless invoke local --function get_cards_by_topic --data '{
 
 -- Create cards
 serverless invoke local --function create_cards --data '{
-    "pergunta": 2,
-    "resposta": 2,
-    "id_assunto": 2,
+    "pergunta": "Voce é um teste ? ",
+    "resposta": "Sim, eu sou um teste",
+    "id_assunto": 21,
     "ativo": 1
 }'
 
@@ -19,9 +19,9 @@ serverless invoke local --function delete_cards --data '{"id_cards": 1}'
 
 --Update
 serverless invoke local --function update_cards --data '{
-    "id_cards": 2,
-    "id_assunto": 2,
-    "pergunta": 2,
-    "resposta": 2,
+    "id_card": 4,
+    "id_assunto": 22,
+    "pergunta": "Voce é um update ? ",
+    "resposta": "Sim, eu sou um update",
     "ativo": 0
 }'

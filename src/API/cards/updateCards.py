@@ -4,7 +4,7 @@ from src.Model.cards import Cards
 
 def update(req, context):
     with get_session() as session:
-        session.query(Cards).filter(Cards.id_cards == req['id_cards']).update({
+        session.query(Cards).filter(Cards.id_card == req['id_card']).update({
             Cards.id_assunto: req['id_assunto'],
             Cards.pergunta: req['pergunta'],
             Cards.resposta: req['resposta'],

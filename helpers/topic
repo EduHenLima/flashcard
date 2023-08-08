@@ -3,24 +3,24 @@ serverless invoke local --function get_topic
 
 -- by category
 serverless invoke local --function get_topic_by_category --data '{
-    "id_categoria": 5
+    "id_categoria": 15
 }'
 
 -- Create Topic
 serverless invoke local --function create_topic --data '{
-    "id_categoria": 5,
+    "id_categoria": 15,
     "nome_assunto": "Ingles",
     "descricao": "Aulas de Inglês",
     "ativo": 1
 }'
 
 -- Delete Topic
-serverless invoke local --function delete_topic --data '{"id_assunto": 13}'
+serverless invoke local --function delete_topic --data '{"id_assunto": 20}'
 
 --Update
 serverless invoke local --function update_topic --data '{
-    "id_assunto": 2,
-    "id_categoria": 5,
+    "id_assunto": 21,
+    "id_categoria": 15,
     "nome_assunto": "Nome Update",
     "descricao": "Desc update",
     "ativo": 0

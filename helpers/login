@@ -12,7 +12,7 @@ serverless invoke local --function delete_login --data '{"id_usuario": 2}'
 
 --Update
 serverless invoke local --function update_login --data '{
-    "id_usuario": 2,
+    "id_usuario": 3,
     "email": "update.teste@gmail.com",
     "uui": "abs84e7c15-362f-11ee-be56-000000"
 }'
