@@ -12,3 +12,9 @@ DROP COLUMN id_pergunta;
 
 ALTER TABLE cards
 DROP COLUMN id_resposta;
+
+ALTER TABLE usuarios
+ADD email varchar(255);
+
+ALTER TABLE usuarios
+ADD uui integer;
