@@ -1,3 +1,5 @@
+org: eduardolima
+app: aws-python
 service: aws-python # NOTE: update this with your service name
 
 frameworkVersion: '3'
@@ -17,6 +19,9 @@ functions:
   # to teste application
   ping:
     handler: src/API/ping.pingDatabase
+      - httpApi:
+         path: /ping
+         method: GET
 
   # To manager cards
   create_cards:

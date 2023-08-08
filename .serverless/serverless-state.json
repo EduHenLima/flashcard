@@ -1,0 +1,2047 @@
+{
+  "service": {
+    "service": "aws-python",
+    "serviceObject": {
+      "name": "aws-python"
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "python3.9",
+      "environment": {
+        "host": "localhost",
+        "user": "edu",
+        "password": "flashcards",
+        "database": "flashcards"
+      },
+      "stage": "dev",
+      "region": "us-east-1",
+      "versionFunctions": true,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketEncryption": {
+                "ServerSideEncryptionConfiguration": [
+                  {
+                    "ServerSideEncryptionByDefault": {
+                      "SSEAlgorithm": "AES256"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ServerlessDeploymentBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+              "Bucket": {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "s3:*",
+                    "Effect": "Deny",
+                    "Principal": "*",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            }
+                          ]
+                        ]
+                      }
+                    ],
+                    "Condition": {
+                      "Bool": {
+                        "aws:SecureTransport": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "PingLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-ping"
+            }
+          },
+          "CreateUnderscorecardsLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-create_cards"
+            }
+          },
+          "GetUnderscorecardsLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-get_cards"
+            }
+          },
+          "GetUnderscorecardsUnderscorebyUnderscoretopicLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-get_cards_by_topic"
+            }
+          },
+          "DeleteUnderscorecardsLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-delete_cards"
+            }
+          },
+          "UpdateUnderscorecardsLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-update_cards"
+            }
+          },
+          "CreateUnderscoretopicLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-create_topic"
+            }
+          },
+          "GetUnderscoretopicLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-get_topic"
+            }
+          },
+          "GetUnderscoretopicUnderscorebyUnderscorecategoryLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-get_topic_by_category"
+            }
+          },
+          "DeleteUnderscoretopicLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-delete_topic"
+            }
+          },
+          "UpdateUnderscoretopicLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-update_topic"
+            }
+          },
+          "CreateUnderscorecategoryLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-create_category"
+            }
+          },
+          "GetUnderscorecategoryLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-get_category"
+            }
+          },
+          "GetUnderscorecategoryUnderscorebyUnderscoreuserLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-get_category_by_user"
+            }
+          },
+          "DeleteUnderscorecategoryLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-delete_category"
+            }
+          },
+          "UpdateUnderscorecategoryLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-update_category"
+            }
+          },
+          "CreateUnderscoreloginLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-create_login"
+            }
+          },
+          "GetUnderscoreloginLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-get_login"
+            }
+          },
+          "DeleteUnderscoreloginLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-delete_login"
+            }
+          },
+          "UpdateUnderscoreloginLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-python-dev-update_login"
+            }
+          },
+          "IamRoleLambdaExecution": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "lambda.amazonaws.com"
+                      ]
+                    },
+                    "Action": [
+                      "sts:AssumeRole"
+                    ]
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "aws-python",
+                        "dev",
+                        "lambda"
+                      ]
+                    ]
+                  },
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:CreateLogStream",
+                          "logs:CreateLogGroup",
+                          "logs:TagResource"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/aws-python-dev*:*"
+                          }
+                        ]
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:PutLogEvents"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/aws-python-dev*:*:*"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "Path": "/",
+              "RoleName": {
+                "Fn::Join": [
+                  "-",
+                  [
+                    "aws-python",
+                    "dev",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    "lambdaRole"
+                  ]
+                ]
+              }
+            }
+          },
+          "EnterpriseLogAccessIamRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "AWS": "arn:aws:iam::802587217904:root"
+                    },
+                    "Action": "sts:AssumeRole",
+                    "Condition": {
+                      "StringEquals": {
+                        "sts:ExternalId": "ServerlessEnterprise-2763e3ef-f172-4ee5-8198-690f45460aa4"
+                      }
+                    }
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": "LogFilterAccess",
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:FilterLogEvents"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::GetAtt": [
+                              "PingLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "CreateUnderscorecardsLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "GetUnderscorecardsLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "GetUnderscorecardsUnderscorebyUnderscoretopicLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "DeleteUnderscorecardsLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "UpdateUnderscorecardsLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "CreateUnderscoretopicLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "GetUnderscoretopicLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "GetUnderscoretopicUnderscorebyUnderscorecategoryLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "DeleteUnderscoretopicLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "UpdateUnderscoretopicLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "CreateUnderscorecategoryLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "GetUnderscorecategoryLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "GetUnderscorecategoryUnderscorebyUnderscoreuserLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "DeleteUnderscorecategoryLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "UpdateUnderscorecategoryLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "CreateUnderscoreloginLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "GetUnderscoreloginLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "DeleteUnderscoreloginLogGroup",
+                              "Arn"
+                            ]
+                          },
+                          {
+                            "Fn::GetAtt": [
+                              "UpdateUnderscoreloginLogGroup",
+                              "Arn"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "PingLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_ping.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-ping",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "PingLogGroup"
+            ]
+          },
+          "CreateUnderscorecardsLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_create_cards.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-create_cards",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "CreateUnderscorecardsLogGroup"
+            ]
+          },
+          "GetUnderscorecardsLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_get_cards.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-get_cards",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetUnderscorecardsLogGroup"
+            ]
+          },
+          "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_get_cards_by_topic.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-get_cards_by_topic",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetUnderscorecardsUnderscorebyUnderscoretopicLogGroup"
+            ]
+          },
+          "DeleteUnderscorecardsLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_delete_cards.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-delete_cards",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DeleteUnderscorecardsLogGroup"
+            ]
+          },
+          "UpdateUnderscorecardsLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_update_cards.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-update_cards",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "UpdateUnderscorecardsLogGroup"
+            ]
+          },
+          "CreateUnderscoretopicLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_create_topic.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-create_topic",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "CreateUnderscoretopicLogGroup"
+            ]
+          },
+          "GetUnderscoretopicLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_get_topic.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-get_topic",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetUnderscoretopicLogGroup"
+            ]
+          },
+          "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_get_topic_by_category.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-get_topic_by_category",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetUnderscoretopicUnderscorebyUnderscorecategoryLogGroup"
+            ]
+          },
+          "DeleteUnderscoretopicLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_delete_topic.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-delete_topic",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DeleteUnderscoretopicLogGroup"
+            ]
+          },
+          "UpdateUnderscoretopicLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_update_topic.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-update_topic",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "UpdateUnderscoretopicLogGroup"
+            ]
+          },
+          "CreateUnderscorecategoryLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_create_category.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-create_category",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "CreateUnderscorecategoryLogGroup"
+            ]
+          },
+          "GetUnderscorecategoryLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_get_category.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-get_category",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetUnderscorecategoryLogGroup"
+            ]
+          },
+          "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_get_category_by_user.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-get_category_by_user",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetUnderscorecategoryUnderscorebyUnderscoreuserLogGroup"
+            ]
+          },
+          "DeleteUnderscorecategoryLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_delete_category.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-delete_category",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DeleteUnderscorecategoryLogGroup"
+            ]
+          },
+          "UpdateUnderscorecategoryLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_update_category.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-update_category",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "UpdateUnderscorecategoryLogGroup"
+            ]
+          },
+          "CreateUnderscoreloginLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_create_login.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-create_login",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "CreateUnderscoreloginLogGroup"
+            ]
+          },
+          "GetUnderscoreloginLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_get_login.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-get_login",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetUnderscoreloginLogGroup"
+            ]
+          },
+          "DeleteUnderscoreloginLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_delete_login.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-delete_login",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DeleteUnderscoreloginLogGroup"
+            ]
+          },
+          "UpdateUnderscoreloginLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z/aws-python.zip"
+              },
+              "Handler": "s_update_login.handler",
+              "Runtime": "python3.9",
+              "FunctionName": "aws-python-dev-update_login",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "host": "localhost",
+                  "user": "edu",
+                  "password": "flashcards",
+                  "database": "flashcards"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "UpdateUnderscoreloginLogGroup"
+            ]
+          },
+          "PingLambdaVersionP4QnsLAoOHEpdlXW9N0DI6aEGMU1NGMuSrDpoGrE": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "PingLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "CreateUnderscorecardsLambdaVersioney4ODoQauZBwnoZkh3B52wES8eov3gQsiX1ZUAty20": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CreateUnderscorecardsLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "GetUnderscorecardsLambdaVersionTelyMhhhLDdFvajDnEv6C4Gwa7CPmSYHyFOxaIew": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUnderscorecardsLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaVersion5o8NHCHqVyf9qgYk0mXUvsVAzpCMlh9MdSGGw6L0": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "DeleteUnderscorecardsLambdaVersionEhfuLbgIto9UIO8F6Os641mvjoNulRQpJboBZR0n4cU": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteUnderscorecardsLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "UpdateUnderscorecardsLambdaVersionnvul7eE7KWLQROcR8CatruCvLJbiAp7XZtNAfXFEY4": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UpdateUnderscorecardsLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "CreateUnderscoretopicLambdaVersionedAAiqldb7Vof73iFR3zYL48prJU6RYTEt5v2I4kPI": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CreateUnderscoretopicLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "GetUnderscoretopicLambdaVersionQ64MeHx2REDJnVbst9ZvadOiCN1inUZpDsJ0aHNvyY": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUnderscoretopicLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaVersion4KIN4pDw9RPiwkS1HkHjPC6VvLWycVHoM8AXsHYE4M": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "DeleteUnderscoretopicLambdaVersionmvSs26bGZYSnQlHLb4NR1hOCBTZbhi3oh4LVJ7jas8": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteUnderscoretopicLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "UpdateUnderscoretopicLambdaVersionH7PE39Jx6XYMve54gnv2xYXxC9isnd10yXsqaOKcGI": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UpdateUnderscoretopicLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "CreateUnderscorecategoryLambdaVersionisPPAuR3MiM7HjLiQLhjlE0mGNSdDEYEZp0APFgoG0": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CreateUnderscorecategoryLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "GetUnderscorecategoryLambdaVersionxGxrU9Wbt3oq1OUTpuUk3NalZt5byYYZk36Bux0OQ": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUnderscorecategoryLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaVersion0NO2Qdn9X0e5R8V4ePNNeH5cFuw4GSqLX3EtdWRuk": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "DeleteUnderscorecategoryLambdaVersionm05AQNpUZfNVhTERnDNw396g7fo3Q36nUHeFGsOLZ4": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteUnderscorecategoryLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "UpdateUnderscorecategoryLambdaVersionPd4u6zeQf6BUvNcfjPSdxn2BKn3r7pmb38Qkv5JTNo": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UpdateUnderscorecategoryLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "CreateUnderscoreloginLambdaVersionfqyJFLUhHKdoz4nKUVlP6QWqqsusp41aOefZSsDw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CreateUnderscoreloginLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "GetUnderscoreloginLambdaVersionwLDDCdkwiVMnlzFPSQ8YCnEf6hFV4uJnPVComxZrE": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUnderscoreloginLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "DeleteUnderscoreloginLambdaVersion6dkDk7Hh3UJyebyGbTLVbrkIuzJHifbIr0xFHUTsieM": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteUnderscoreloginLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "UpdateUnderscoreloginLambdaVersionqbKF7SR7m1MQkYdqO6I3jcHB2kTMf1wYmQDgHSGKzE": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UpdateUnderscoreloginLambdaFunction"
+              },
+              "CodeSha256": "/4K5YLf34L2iTbHErhUy5ye4FB3+2iVF7ryCv1qqYJI="
+            }
+          },
+          "CWLSubFilterPingLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "PingLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterCreateUnderscorecardsLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "CreateUnderscorecardsLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterGetUnderscorecardsLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "GetUnderscorecardsLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterGetUnderscorecardsUnderscorebyUnderscoretopicLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "GetUnderscorecardsUnderscorebyUnderscoretopicLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterDeleteUnderscorecardsLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "DeleteUnderscorecardsLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterUpdateUnderscorecardsLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "UpdateUnderscorecardsLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterCreateUnderscoretopicLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "CreateUnderscoretopicLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterGetUnderscoretopicLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "GetUnderscoretopicLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterGetUnderscoretopicUnderscorebyUnderscorecategoryLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "GetUnderscoretopicUnderscorebyUnderscorecategoryLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterDeleteUnderscoretopicLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "DeleteUnderscoretopicLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterUpdateUnderscoretopicLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "UpdateUnderscoretopicLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterCreateUnderscorecategoryLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "CreateUnderscorecategoryLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterGetUnderscorecategoryLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "GetUnderscorecategoryLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterGetUnderscorecategoryUnderscorebyUnderscoreuserLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "GetUnderscorecategoryUnderscorebyUnderscoreuserLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterDeleteUnderscorecategoryLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "DeleteUnderscorecategoryLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterUpdateUnderscorecategoryLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "UpdateUnderscorecategoryLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterCreateUnderscoreloginLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "CreateUnderscoreloginLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterGetUnderscoreloginLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "GetUnderscoreloginLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterDeleteUnderscoreloginLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "DeleteUnderscoreloginLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterUpdateUnderscoreloginLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "UpdateUnderscoreloginLogGroup"
+              }
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-ServerlessDeploymentBucketName"
+            }
+          },
+          "EnterpriseLogAccessIamRole": {
+            "Value": {
+              "Fn::GetAtt": [
+                "EnterpriseLogAccessIamRole",
+                "Arn"
+              ]
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-EnterpriseLogAccessIamRole"
+            }
+          },
+          "PingLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "PingLambdaVersionP4QnsLAoOHEpdlXW9N0DI6aEGMU1NGMuSrDpoGrE"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-PingLambdaFunctionQualifiedArn"
+            }
+          },
+          "CreateUnderscorecardsLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CreateUnderscorecardsLambdaVersioney4ODoQauZBwnoZkh3B52wES8eov3gQsiX1ZUAty20"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-CreateUnderscorecardsLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetUnderscorecardsLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUnderscorecardsLambdaVersionTelyMhhhLDdFvajDnEv6C4Gwa7CPmSYHyFOxaIew"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-GetUnderscorecardsLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaVersion5o8NHCHqVyf9qgYk0mXUvsVAzpCMlh9MdSGGw6L0"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-GetUnderscorecardsUnderscorebyUnderscoretopicLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteUnderscorecardsLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteUnderscorecardsLambdaVersionEhfuLbgIto9UIO8F6Os641mvjoNulRQpJboBZR0n4cU"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-DeleteUnderscorecardsLambdaFunctionQualifiedArn"
+            }
+          },
+          "UpdateUnderscorecardsLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UpdateUnderscorecardsLambdaVersionnvul7eE7KWLQROcR8CatruCvLJbiAp7XZtNAfXFEY4"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-UpdateUnderscorecardsLambdaFunctionQualifiedArn"
+            }
+          },
+          "CreateUnderscoretopicLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CreateUnderscoretopicLambdaVersionedAAiqldb7Vof73iFR3zYL48prJU6RYTEt5v2I4kPI"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-CreateUnderscoretopicLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetUnderscoretopicLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUnderscoretopicLambdaVersionQ64MeHx2REDJnVbst9ZvadOiCN1inUZpDsJ0aHNvyY"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-GetUnderscoretopicLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaVersion4KIN4pDw9RPiwkS1HkHjPC6VvLWycVHoM8AXsHYE4M"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteUnderscoretopicLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteUnderscoretopicLambdaVersionmvSs26bGZYSnQlHLb4NR1hOCBTZbhi3oh4LVJ7jas8"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-DeleteUnderscoretopicLambdaFunctionQualifiedArn"
+            }
+          },
+          "UpdateUnderscoretopicLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UpdateUnderscoretopicLambdaVersionH7PE39Jx6XYMve54gnv2xYXxC9isnd10yXsqaOKcGI"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-UpdateUnderscoretopicLambdaFunctionQualifiedArn"
+            }
+          },
+          "CreateUnderscorecategoryLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CreateUnderscorecategoryLambdaVersionisPPAuR3MiM7HjLiQLhjlE0mGNSdDEYEZp0APFgoG0"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-CreateUnderscorecategoryLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetUnderscorecategoryLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUnderscorecategoryLambdaVersionxGxrU9Wbt3oq1OUTpuUk3NalZt5byYYZk36Bux0OQ"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-GetUnderscorecategoryLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaVersion0NO2Qdn9X0e5R8V4ePNNeH5cFuw4GSqLX3EtdWRuk"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteUnderscorecategoryLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteUnderscorecategoryLambdaVersionm05AQNpUZfNVhTERnDNw396g7fo3Q36nUHeFGsOLZ4"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-DeleteUnderscorecategoryLambdaFunctionQualifiedArn"
+            }
+          },
+          "UpdateUnderscorecategoryLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UpdateUnderscorecategoryLambdaVersionPd4u6zeQf6BUvNcfjPSdxn2BKn3r7pmb38Qkv5JTNo"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-UpdateUnderscorecategoryLambdaFunctionQualifiedArn"
+            }
+          },
+          "CreateUnderscoreloginLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CreateUnderscoreloginLambdaVersionfqyJFLUhHKdoz4nKUVlP6QWqqsusp41aOefZSsDw"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-CreateUnderscoreloginLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetUnderscoreloginLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUnderscoreloginLambdaVersionwLDDCdkwiVMnlzFPSQ8YCnEf6hFV4uJnPVComxZrE"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-GetUnderscoreloginLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteUnderscoreloginLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteUnderscoreloginLambdaVersion6dkDk7Hh3UJyebyGbTLVbrkIuzJHifbIr0xFHUTsieM"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-DeleteUnderscoreloginLambdaFunctionQualifiedArn"
+            }
+          },
+          "UpdateUnderscoreloginLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UpdateUnderscoreloginLambdaVersionqbKF7SR7m1MQkYdqO6I3jcHB2kTMf1wYmQDgHSGKzE"
+            },
+            "Export": {
+              "Name": "sls-aws-python-dev-UpdateUnderscoreloginLambdaFunctionQualifiedArn"
+            }
+          }
+        }
+      },
+      "coreCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketEncryption": {
+                "ServerSideEncryptionConfiguration": [
+                  {
+                    "ServerSideEncryptionByDefault": {
+                      "SSEAlgorithm": "AES256"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ServerlessDeploymentBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+              "Bucket": {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "s3:*",
+                    "Effect": "Deny",
+                    "Principal": "*",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            }
+                          ]
+                        ]
+                      }
+                    ],
+                    "Condition": {
+                      "Bool": {
+                        "aws:SecureTransport": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          }
+        }
+      },
+      "vpc": {}
+    },
+    "pluginsData": {},
+    "functions": {
+      "ping": {
+        "handler": "s_ping.handler",
+        "events": [],
+        "name": "aws-python-dev-ping",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "PingLambdaVersionP4QnsLAoOHEpdlXW9N0DI6aEGMU1NGMuSrDpoGrE"
+      },
+      "create_cards": {
+        "handler": "s_create_cards.handler",
+        "events": [],
+        "name": "aws-python-dev-create_cards",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "CreateUnderscorecardsLambdaVersioney4ODoQauZBwnoZkh3B52wES8eov3gQsiX1ZUAty20"
+      },
+      "get_cards": {
+        "handler": "s_get_cards.handler",
+        "events": [],
+        "name": "aws-python-dev-get_cards",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "GetUnderscorecardsLambdaVersionTelyMhhhLDdFvajDnEv6C4Gwa7CPmSYHyFOxaIew"
+      },
+      "get_cards_by_topic": {
+        "handler": "s_get_cards_by_topic.handler",
+        "events": [],
+        "name": "aws-python-dev-get_cards_by_topic",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaVersion5o8NHCHqVyf9qgYk0mXUvsVAzpCMlh9MdSGGw6L0"
+      },
+      "delete_cards": {
+        "handler": "s_delete_cards.handler",
+        "events": [],
+        "name": "aws-python-dev-delete_cards",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "DeleteUnderscorecardsLambdaVersionEhfuLbgIto9UIO8F6Os641mvjoNulRQpJboBZR0n4cU"
+      },
+      "update_cards": {
+        "handler": "s_update_cards.handler",
+        "events": [],
+        "name": "aws-python-dev-update_cards",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "UpdateUnderscorecardsLambdaVersionnvul7eE7KWLQROcR8CatruCvLJbiAp7XZtNAfXFEY4"
+      },
+      "create_topic": {
+        "handler": "s_create_topic.handler",
+        "events": [],
+        "name": "aws-python-dev-create_topic",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "CreateUnderscoretopicLambdaVersionedAAiqldb7Vof73iFR3zYL48prJU6RYTEt5v2I4kPI"
+      },
+      "get_topic": {
+        "handler": "s_get_topic.handler",
+        "events": [],
+        "name": "aws-python-dev-get_topic",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "GetUnderscoretopicLambdaVersionQ64MeHx2REDJnVbst9ZvadOiCN1inUZpDsJ0aHNvyY"
+      },
+      "get_topic_by_category": {
+        "handler": "s_get_topic_by_category.handler",
+        "events": [],
+        "name": "aws-python-dev-get_topic_by_category",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaVersion4KIN4pDw9RPiwkS1HkHjPC6VvLWycVHoM8AXsHYE4M"
+      },
+      "delete_topic": {
+        "handler": "s_delete_topic.handler",
+        "events": [],
+        "name": "aws-python-dev-delete_topic",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "DeleteUnderscoretopicLambdaVersionmvSs26bGZYSnQlHLb4NR1hOCBTZbhi3oh4LVJ7jas8"
+      },
+      "update_topic": {
+        "handler": "s_update_topic.handler",
+        "events": [],
+        "name": "aws-python-dev-update_topic",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "UpdateUnderscoretopicLambdaVersionH7PE39Jx6XYMve54gnv2xYXxC9isnd10yXsqaOKcGI"
+      },
+      "create_category": {
+        "handler": "s_create_category.handler",
+        "events": [],
+        "name": "aws-python-dev-create_category",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "CreateUnderscorecategoryLambdaVersionisPPAuR3MiM7HjLiQLhjlE0mGNSdDEYEZp0APFgoG0"
+      },
+      "get_category": {
+        "handler": "s_get_category.handler",
+        "events": [],
+        "name": "aws-python-dev-get_category",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "GetUnderscorecategoryLambdaVersionxGxrU9Wbt3oq1OUTpuUk3NalZt5byYYZk36Bux0OQ"
+      },
+      "get_category_by_user": {
+        "handler": "s_get_category_by_user.handler",
+        "events": [],
+        "name": "aws-python-dev-get_category_by_user",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaVersion0NO2Qdn9X0e5R8V4ePNNeH5cFuw4GSqLX3EtdWRuk"
+      },
+      "delete_category": {
+        "handler": "s_delete_category.handler",
+        "events": [],
+        "name": "aws-python-dev-delete_category",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "DeleteUnderscorecategoryLambdaVersionm05AQNpUZfNVhTERnDNw396g7fo3Q36nUHeFGsOLZ4"
+      },
+      "update_category": {
+        "handler": "s_update_category.handler",
+        "events": [],
+        "name": "aws-python-dev-update_category",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "UpdateUnderscorecategoryLambdaVersionPd4u6zeQf6BUvNcfjPSdxn2BKn3r7pmb38Qkv5JTNo"
+      },
+      "create_login": {
+        "handler": "s_create_login.handler",
+        "events": [],
+        "name": "aws-python-dev-create_login",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "CreateUnderscoreloginLambdaVersionfqyJFLUhHKdoz4nKUVlP6QWqqsusp41aOefZSsDw"
+      },
+      "get_login": {
+        "handler": "s_get_login.handler",
+        "events": [],
+        "name": "aws-python-dev-get_login",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "GetUnderscoreloginLambdaVersionwLDDCdkwiVMnlzFPSQ8YCnEf6hFV4uJnPVComxZrE"
+      },
+      "delete_login": {
+        "handler": "s_delete_login.handler",
+        "events": [],
+        "name": "aws-python-dev-delete_login",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "DeleteUnderscoreloginLambdaVersion6dkDk7Hh3UJyebyGbTLVbrkIuzJHifbIr0xFHUTsieM"
+      },
+      "update_login": {
+        "handler": "s_update_login.handler",
+        "events": [],
+        "name": "aws-python-dev-update_login",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.9",
+        "vpc": {},
+        "versionLogicalId": "UpdateUnderscoreloginLambdaVersionqbKF7SR7m1MQkYdqO6I3jcHB2kTMf1wYmQDgHSGKzE"
+      }
+    },
+    "configValidationMode": "warn",
+    "serviceFilename": "serverless.yml",
+    "initialServerlessConfig": {
+      "org": "eduardolima",
+      "app": "aws-python",
+      "service": "aws-python",
+      "frameworkVersion": "3",
+      "provider": {
+        "$ref": "$[\"service\"][\"provider\"]"
+      },
+      "functions": {
+        "$ref": "$[\"service\"][\"functions\"]"
+      }
+    },
+    "app": "aws-python",
+    "org": "eduardolima",
+    "layers": {},
+    "isDashboardMonitoringPreconfigured": true,
+    "isDashboardAppPreconfigured": true,
+    "orgUid": "2763e3ef-f172-4ee5-8198-690f45460aa4",
+    "appUid": "rJLvSqJJ1dbtgBPc1K",
+    "artifact": "/home/www/serverless-flashcard/.serverless/aws-python.zip"
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/aws-python/dev/1691534313683-2023-08-08T22:38:33.683Z",
+    "artifact": "aws-python.zip"
+  }
+}
