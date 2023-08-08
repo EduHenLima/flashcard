@@ -6,6 +6,6 @@ Base = declarative_base()
 class Login(Base):
     __tablename__ = 'usuarios'
 
-    id_usuário = Column(Integer, primary_key=True, nullable=False)
-    email = Column(String(255), nullable=False)
-    uui = Column(Integer, nullable=False)
+    id_usuario = Column(Integer, primary_key=True, nullable=False)
+    email = Column(String(255), nullable=True)
+    uui = Column(Integer, nullable=True)

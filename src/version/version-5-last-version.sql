@@ -27,3 +27,8 @@ ALTER TABLE `flashcards`.`assuntos`
 ADD CONSTRAINT `fk_assuntos_1`
   FOREIGN KEY (`id_categoria`)
   REFERENCES `flashcards`.`categorias` (`id_categoria`);
+
+ALTER TABLE `flashcards`.`usuarios`
+CHANGE COLUMN `email` `email` VARCHAR(255) NOT NULL ,
+CHANGE COLUMN `uui` `uui` VARCHAR(255) NOT NULL ;
+

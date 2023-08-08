@@ -3,14 +3,13 @@ from src.Model.login import Login
 
 
 def read(event, context):
-    categorys = get_session().query(Login)
-    for category in categorys:
-        print(vars(category))
+    logins = get_session().query(Login)
+    for login in logins:
+        print(vars(login))
 
     body = {
         "message": "Success!",
-        "input": categorys,
+        "input": logins,
     }
 
     return {"statusCode": 200, "body": body}
-

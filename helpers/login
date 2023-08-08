@@ -1,0 +1,18 @@
+-- Return all Topic
+serverless invoke local --function get_login
+
+-- Create Topic
+serverless invoke local --function create_login --data '{
+    "email": "create.teste@gmail.com",
+    "uui": "00c38f8e-362f-11ee-be56-0242ac120002"
+}'
+
+-- Delete Topic
+serverless invoke local --function delete_login --data '{"id_usuario": 2}'
+
+--Update
+serverless invoke local --function update_login --data '{
+    "id_usuario": 2,
+    "email": "update.teste@gmail.com",
+    "uui": "abs84e7c15-362f-11ee-be56-000000"
+}'

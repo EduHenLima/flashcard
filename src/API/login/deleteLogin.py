@@ -1,10 +1,19 @@
 import json
 
+from src.Model.Base.database import get_session
+from src.Model.login import Login
 
-def delete(event, context):
+
+def delete(req, context):
+    with get_session() as session:
+        user = session.query(Login).filter(Login.id_usuario == req['id_usuario']).one()
+        session.delete(user)
+        session.commit()
+
     body = {
-        "message": "Go Serverless v3.0! Your function executed successfully!",
-        "input": event,
+        "message": "Success!",
+        'Deleted': 'ID: ' + str(req['id_usuario']),
     }
 
-    return {"statusCode": 200, "body": json.dumps(body)}
+    return {"statusCode": 200, "body": body}
+
