@@ -7,6 +7,7 @@ class Cards(Base):
     __tablename__ = 'cards'
 
     id_cards = Column(Integer, primary_key=True)
+    id_assunto = Column(Integer, primary_key=True)
     pergunta = Column(String(255), nullable=False)
     resposta = Column(String(255), nullable=False)
     ativo = Column(Integer, primary_key=False)

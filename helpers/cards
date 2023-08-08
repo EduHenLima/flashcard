@@ -1,6 +1,11 @@
 -- Return all cards
 serverless invoke local --function get_cards
 
+-- id topic
+serverless invoke local --function get_cards_by_topic --data '{
+    "id_assunto": 2
+}'
+
 -- Create cards
 serverless invoke local --function create_cards --data '{
     "id_pergunta": 2,

@@ -23,6 +23,8 @@ functions:
     handler: src/API/cards/createCards.create
   get_cards:
     handler: src/API/cards/readCards.read
+  get_cards_by_topic:
+    handler: src/API/cards/getCardsByTopic.get_cards_by_topic
   delete_cards:
     handler: src/API/cards/deleteCards.delete
   update_cards:
