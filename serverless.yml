@@ -32,7 +32,7 @@ functions:
 
   # To manager topic
   create_topic:
-    handler: src/API/topic/createtopic.create
+    handler: src/API/topic/createTopic.create
   get_topic:
     handler: src/API/topic/readTopic.read
   get_topic_by_category:

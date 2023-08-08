@@ -1,19 +1,18 @@
-from src.Model.Base.database import get_connection
+from sqlalchemy import delete, text
+
+from src.Model.Base.database import get_connection, get_session
+from src.Model.assuntos import Topics
 
 
 def delete(req, context):
-    connection = get_connection()
-    mycursor = connection.cursor()
-
-    sql = "DELETE FROM assuntos WHERE id_assunto = %s"
-    val = (req['id_assunto'],)
-
-    mycursor.execute(sql, val)
-    connection.commit()
+    with get_session() as session:
+        user = session.query(Topics).filter(Topics.id_assunto == req['id_assunto']).one()
+        session.delete(user)
+        session.commit()
 
     body = {
         "message": "Success!",
-        'quantity': mycursor.rowcount,
+        'Deleted': 'ID: ' + str(req['id_assunto']),
     }
 
     return {"statusCode": 200, "body": body}

@@ -1,18 +1,23 @@
-from src.Model.Base.database import get_connection
+from src.Model.Base.database import get_connection, get_session, commit_insert
+from src.Model.assuntos import Topics
 
 
 def update(req, context):
-    connection = get_connection()
-    mycursor = connection.cursor()
-    sql = "UPDATE assuntos SET id_categoria = %s, tipo = %s, nome_assunto = %s, descricao = %s, ativo = %s WHERE id_assunto = %s"
-    val = (req['id_categoria'], req['tipo'], req['nome_assunto'],req['descricao'], req['ativo'], req['id_assunto'])
-
-    mycursor.execute(sql, val)
-    connection.commit()
+    with get_session() as session:
+        session.query(Topics).filter(Topics.id_assunto == req['id_assunto']).update({
+            Topics.nome_assunto: req['nome_assunto'],
+            Topics.descricao: req['descricao'],
+            Topics.ativo: req['ativo']
+        })
+        session.commit()
 
     body = {
         "message": "Success!",
-        'Quantity': mycursor.rowcount,
+        'Params Updated': {
+            'nome_assunto': req['nome_assunto'],
+            'descricao': req['descricao'],
+            'ativo': req['ativo']
+        }
     }
 
     return {"statusCode": 200, "body": body}

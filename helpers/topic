@@ -7,23 +7,21 @@ serverless invoke local --function get_topic_by_category --data '{
 }'
 
 -- Create Topic
-serverless invoke local --function create_Topic --data '{
+serverless invoke local --function create_topic --data '{
     "id_categoria": 5,
-    "tipo": "NORMAL",
     "nome_assunto": "Ingles",
     "descricao": "Aulas de Inglês",
     "ativo": 1
 }'
 
 -- Delete Topic
-serverless invoke local --function delete_Topic --data '{"id_assunto": 1}'
+serverless invoke local --function delete_topic --data '{"id_assunto": 13}'
 
 --Update
-serverless invoke local --function update_Topic --data '{
-    "id_assunto": 1,
+serverless invoke local --function update_topic --data '{
+    "id_assunto": 2,
     "id_categoria": 5,
-    "tipo": "INTELIGENTE",
-    "nome_assunto": "Ingles",
-    "descricao": "Aulas de Inglês",
-    "ativo": 1
+    "nome_assunto": "Nome Update",
+    "descricao": "Desc update",
+    "ativo": 0
 }'
