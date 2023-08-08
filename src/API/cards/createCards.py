@@ -1,18 +1,20 @@
-from src.Model.Base.database import get_connection
+from sqlalchemy import insert
+
+from src.Model.Base.database import commit_insert
+from src.Model.cards import Cards
 
 
 def create(req, context):
-    connection = get_connection()
-    mycursor = connection.cursor()
-
-    sql = "INSERT INTO cards (id_pergunta,id_resposta,id_assunto,ativo) VALUES (%s,%s,%s,%s)"
-    val = (req['id_pergunta'], req['id_resposta'], req['id_assunto'], req['ativo'])
-    mycursor.execute(sql, val)
-    connection.commit()
+    commit_insert(insert(Cards).values(pergunta=req['pergunta'], resposta=req['resposta'], id_assunto=req['id_assunto'], ativo=req['ativo']))
 
     body = {
         "message": "Success!",
-        'Quantity': mycursor.rowcount,
+        "Created": {
+            "pergunta": req['pergunta'],
+            "resposta": req['resposta'],
+            "id_assunto": req['id_assunto'],
+            "ativo":  req['ativo']
+        },
     }
 
     return {"statusCode": 200, "body": body}

@@ -1,18 +1,25 @@
-from src.Model.Base.database import get_connection
+from src.Model.Base.database import get_connection, get_session
+from src.Model.cards import Cards
 
 
 def update(req, context):
-    connection = get_connection()
-    mycursor = connection.cursor()
-    sql = "UPDATE cards SET id_pergunta = %s, id_resposta = %s, id_assunto = %s, ativo = %s WHERE id_cards = %s"
-    val = (req['id_pergunta'], req['id_resposta'], req['id_assunto'], req['ativo'], req['id_cards'])
-
-    mycursor.execute(sql, val)
-    connection.commit()
+    with get_session() as session:
+        session.query(Cards).filter(Cards.id_cards == req['id_cards']).update({
+            Cards.id_assunto: req['id_assunto'],
+            Cards.pergunta: req['pergunta'],
+            Cards.resposta: req['resposta'],
+            Cards.ativo: req['ativo']
+        })
+        session.commit()
 
     body = {
         "message": "Success!",
-        'Quantity': mycursor.rowcount,
+        'Params Updated': {
+            'id_assunto': req['id_assunto'],
+            'pergunta': req['pergunta'],
+            'resposta': req['resposta'],
+            'ativo': req['ativo']
+        }
     }
 
     return {"statusCode": 200, "body": body}

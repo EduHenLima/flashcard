@@ -1,6 +1,5 @@
 from src.Model.Base.database import get_session
 from src.Model.cards import Cards
-from src.Model.categorias import Categorys
 
 
 def get_cards_by_topic(req, context):
