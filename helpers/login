@@ -2,10 +2,10 @@
 serverless invoke local --function get_login
 
 -- Create Topic
-serverless invoke local --function create_login --data '{
+serverless invoke local --function create_login --data '{"body": {
     "email": "create.teste@gmail.com",
     "uui": "00c38f8e-362f-11ee-be56-0242ac120002"
-}'
+}}'
 
 -- Delete Topic
 serverless invoke local --function delete_login --data '{"id_usuario": 2}'

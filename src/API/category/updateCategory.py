@@ -1,8 +1,12 @@
+import json
+
 from src.Model.Base.database import get_session
 from src.Model.categorias import Categorys
 
 
 def update(req, context):
+    req = json.loads(req['body'])
+
     with get_session() as session:
         session.query(Categorys).filter(Categorys.id_categoria == req['id_categoria']).update({
             Categorys.id_usuario: req['id_usuario'],
@@ -22,4 +26,4 @@ def update(req, context):
         }
     }
 
-    return {"statusCode": 200, "body": body}
+    return {"statusCode": 200, "body": json.dumps(body)}

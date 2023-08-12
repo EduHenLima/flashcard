@@ -1,8 +1,12 @@
+import json
+
 from src.Model.Base.database import get_session
 from src.Model.categorias import Categorys
 
 
 def get_category_by_user(req, context):
+    req = json.loads(req['body'])
+
     categorys = get_session().query(Categorys).filter(Categorys.id_usuario == req['id_usuario'])
     for category in categorys:
         print(vars(category))
@@ -12,4 +16,4 @@ def get_category_by_user(req, context):
         "input": categorys,
     }
 
-    return {"statusCode": 200, "body": body}
+    return {"statusCode": 200, "body": json.dumps(body)}

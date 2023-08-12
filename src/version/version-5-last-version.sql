@@ -1,6 +1,3 @@
-ALTER TABLE `flashcards`.`usuarios`
-CHANGE COLUMN `id_usuaario` `id_usuario` INT NOT NULL AUTO_INCREMENT ;
-
 ALTER TABLE `flashcards`.`categorias`
 DROP FOREIGN KEY `fk_categorias_1`;
 ALTER TABLE `flashcards`.`categorias`

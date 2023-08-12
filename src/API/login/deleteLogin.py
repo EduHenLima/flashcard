@@ -5,6 +5,8 @@ from src.Model.login import Login
 
 
 def delete(req, context):
+    req = json.loads(req['body'])
+
     with get_session() as session:
         user = session.query(Login).filter(Login.id_usuario == req['id_usuario']).one()
         session.delete(user)
@@ -15,5 +17,5 @@ def delete(req, context):
         'Deleted': 'ID: ' + str(req['id_usuario']),
     }
 
-    return {"statusCode": 200, "body": body}
+    return {"statusCode": 200, "body": json.dumps(body)}
 

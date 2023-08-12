@@ -1,3 +1,4 @@
+import json
 from src.Model.Base.database import get_session
 from src.Model.categorias import Categorys
 
@@ -12,4 +13,4 @@ def read(event, context):
         "input": categorys,
     }
 
-    return {"statusCode": 200, "body": body}
+    return {"statusCode": 200, "body": json.dumps(body)}

@@ -2,21 +2,27 @@ org: eduardolima
 app: aws-python
 service: aws-python # NOTE: update this with your service name
 
+custom:
+  pythonRequirements:
+    useDownloadCache: false
+    dockerizePip: true
+
 frameworkVersion: '3'
+
+plugins:
+  - serverless-python-requirements
 
 provider:
   name: aws
   runtime: python3.9
 
   environment:
-    host: 'localhost'
-    user: 'edu'
-    password: 'flashcards'
-    database: 'flashcards'
+    host: ${param:host}
+    user: ${param:user}
+    password: ${param:password}
+    database: ${param:database}
 
-# 'functions' in serverless.yml
 functions:
-  # to teste application
   ping:
     handler: src/API/ping.pingDatabase
     events:

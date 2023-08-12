@@ -1,8 +1,12 @@
+import json
+
 from src.Model.Base.database import get_connection, get_session
 from src.Model.categorias import Categorys
 
 
 def delete(req, context):
+    req = json.loads(req['body'])
+
     with get_session() as session:
         user = session.query(Categorys).filter(Categorys.id_categoria == req['id_categoria']).one()
         session.delete(user)
@@ -13,4 +17,4 @@ def delete(req, context):
         'Deleted': 'ID: ' + str(req['id_categoria']),
     }
 
-    return {"statusCode": 200, "body": body}
+    return {"statusCode": 200, "body": json.dumps(body)}

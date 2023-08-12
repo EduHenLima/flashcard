@@ -8,5 +8,7 @@ Commands:
 * pip install mysql-connector-python
 * pip install sqlalchemy
 * pip install pandas
+
 Invoke:
+* Run local: serverless offline start --stage local
 * Ping: serverless invoke local --function ping

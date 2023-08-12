@@ -5,6 +5,8 @@ from src.Model.login import Login
 
 
 def update(req, context):
+    req = json.loads(req['body'])
+
     with get_session() as session:
         session.query(Login).filter(Login.id_usuario == req['id_usuario']).update({
             Login.email: req['email'],
@@ -21,4 +23,4 @@ def update(req, context):
         }
     }
 
-    return {"statusCode": 200, "body": body}
+    return {"statusCode": 200, "body": json.dumps(body)}
