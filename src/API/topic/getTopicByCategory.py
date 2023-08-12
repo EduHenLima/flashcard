@@ -1,19 +1,12 @@
 import json
 
+from src.API.helpers.alchemyEncoder import AlchemyEncoder
 from src.Model.Base.database import get_session
 from src.Model.assuntos import Topics
 
 
 def get_topic_by_category(req, context):
-    req = json.loads(req['body'])
+    topics = get_session().query(Topics).filter(Topics.id_assunto == req['pathParameters']['id_categoria'])
+    result = topics.all()
 
-    topics = get_session().query(Topics).filter(Topics.id_categoria == req['id_categoria'])
-    for topic in topics:
-        print(vars(topic))
-
-    body = {
-        "message": "Success!",
-        "input": topics,
-    }
-
-    return json.dumps({"statusCode": 200, "body": body})
+    return json.dumps(result, cls=AlchemyEncoder)

@@ -2,9 +2,7 @@
 serverless invoke local --function get_category
 
 -- by user
-serverless invoke local --function get_category_by_user --data '{
-    "id_usuario": 16
-}'
+serverless invoke local --function get_category_by_user -d '{"pathParameters":{"id_usuario":6}}'
 
 -- Create category
 serverless invoke local --function create_category --data '{
