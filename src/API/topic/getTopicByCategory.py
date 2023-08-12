@@ -16,4 +16,4 @@ def get_topic_by_category(req, context):
         "input": topics,
     }
 
-    return {"statusCode": 200, "body": json.dumps(body)}
+    return json.dumps({"statusCode": 200, "body": body})

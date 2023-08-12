@@ -16,4 +16,4 @@ def get_category_by_user(req, context):
         "input": categorys,
     }
 
-    return {"statusCode": 200, "body": json.dumps(body)}
+    return json.dumps({"statusCode": 200, "body": body})

@@ -23,4 +23,4 @@ def update(req, context):
         }
     }
 
-    return {"statusCode": 200, "body": json.dumps(body)}
+    return json.dumps({"statusCode": 200, "body": body})

@@ -13,4 +13,4 @@ def read(event, context):
         "input": categorys,
     }
 
-    return {"statusCode": 200, "body": json.dumps(body)}
+    return json.dumps({"statusCode": 200, "body": body})

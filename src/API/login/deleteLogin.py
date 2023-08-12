@@ -17,5 +17,5 @@ def delete(req, context):
         'Deleted': 'ID: ' + str(req['id_usuario']),
     }
 
-    return {"statusCode": 200, "body": json.dumps(body)}
+    return json.dumps({"statusCode": 200, "body": body})
 

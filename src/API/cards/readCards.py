@@ -14,4 +14,4 @@ def read(event, context):
         "input": cards,
     }
 
-    return {"statusCode": 200, "body": json.dumps(body)}
+    return json.dumps({"statusCode": 200, "body": body})
