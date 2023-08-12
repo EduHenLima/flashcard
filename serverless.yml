@@ -36,19 +36,27 @@ functions:
   get_cards:
     handler: src/API/cards/readCards.read
     events:
-      - httpApi: 'GET /get_cards'
+      - httpApi:
+          method: GET
+          path: /readCards/{id_card}
   get_cards_by_topic:
     handler: src/API/cards/getCardsByTopic.get_cards_by_topic
     events:
-      - httpApi: 'GET /get_cards_by_topic'
+      - httpApi:
+          method: GET
+          path: /get_cards_by_topic/{id_topic}
   delete_cards:
     handler: src/API/cards/deleteCards.delete
     events:
-      - httpApi: 'DELETE /delete_cards'
+      - httpApi:
+          method: DELETE
+          path: /deleteCards/{id_card}
   update_cards:
     handler: src/API/cards/updateCards.update
     events:
-      - httpApi: 'PUT /update_cards'
+      - httpApi:
+          method: PUT
+          path: /update_cards/{id_card}
 
   # To manager topic
   create_topic:
@@ -58,19 +66,27 @@ functions:
   get_topic:
     handler: src/API/topic/readTopic.read
     events:
-      - httpApi: 'GET /get_topic'
+      - httpApi:
+          method: GET
+          path: /get_topic/{id_topic}
   get_topic_by_category:
     handler: src/API/topic/getTopicByCategory.get_topic_by_category
     events:
-      - httpApi: 'GET /get_topic_by_category'
+      - httpApi:
+          method: GET
+          path: /get_topic_by_category/{id_topic}
   delete_topic:
     handler: src/API/topic/deleteTopic.delete
     events:
-      - httpApi: 'DELETE /delete_topic'
+      - httpApi:
+          method: DELETE
+          path: /delete_topic/{id_topic}
   update_topic:
     handler: src/API/topic/updateTopic.update
     events:
-      - httpApi: 'PUT /update_topic'
+      - httpApi:
+          method: PUT
+          path: /update_topic/{id_topic}
 
   # To manager category
   create_category:
@@ -80,19 +96,27 @@ functions:
   get_category:
     handler: src/API/category/readCategory.read
     events:
-      - httpApi: 'GET /get_category'
+      - httpApi:
+          method: GET
+          path: /get_category/{id_category}
   get_category_by_user:
     handler: src/API/category/getCategoryByUser.get_category_by_user
     events:
-      - httpApi: 'GET /get_category_by_user'
+      - httpApi:
+          method: GET
+          path: /get_category_by_user/{id_category}
   delete_category:
     handler: src/API/category/deleteCategory.delete
     events:
-      - httpApi: 'DELETE /delete_category'
+      - httpApi:
+          method: DELETE
+          path: /delete_category/{id_category}
   update_category:
     handler: src/API/category/updateCategory.update
     events:
-      - httpApi: 'PUT /update_category'
+      - httpApi:
+          method: PUT
+          path: /update_category/{id_category}
 
   # To manager login
   create_login:
@@ -102,13 +126,19 @@ functions:
   get_login:
     handler: src/API/login/readLogin.read
     events:
-      - httpApi: 'GET /get_login'
+      - httpApi:
+          method: GET
+          path: /get_login/{id_login}
   delete_login:
     handler: src/API/login/deleteLogin.delete
     events:
-      - httpApi: 'DELETE /delete_login'
+      - httpApi:
+          method: DELETE
+          path: /delete_login/{id_login}
   update_login:
     handler: src/API/login/updateLogin.update
     events:
-      - httpApi: 'PUT /update_login'
+      - httpApi:
+          method: PUT
+          path: /update_login/{id_login}
 
