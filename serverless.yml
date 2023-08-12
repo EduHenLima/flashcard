@@ -45,12 +45,6 @@ functions:
       - httpApi:
           method: GET
           path: /get_cards_by_topic/{id_topic}
-  delete_cards:
-    handler: src/API/cards/deleteCards.delete
-    events:
-      - httpApi:
-          method: DELETE
-          path: /deleteCards/{id_card}
   update_cards:
     handler: src/API/cards/updateCards.update
     events:
@@ -74,7 +68,7 @@ functions:
     events:
       - httpApi:
           method: GET
-          path: /get_topic_by_category/{id_topic}
+          path: /get_topic_by_category/{id_categoria}
   delete_topic:
     handler: src/API/topic/deleteTopic.delete
     events:
@@ -104,20 +98,13 @@ functions:
     events:
       - httpApi:
           method: GET
-          path: /get_category_by_user/{id_user}
-  delete_category:
-    handler: src/API/category/deleteCategory.delete
-    events:
-      - httpApi:
-          method: DELETE
-          path: /delete_category/{id_category}
+          path: /get_category_by_user/{id_usuario}
   update_category:
     handler: src/API/category/updateCategory.update
     events:
       - httpApi:
           method: PUT
           path: /update_category/{id_category}
-
   # To manager login
   create_login:
     handler: src/API/login/createLogin.create
@@ -129,16 +116,21 @@ functions:
       - httpApi:
           method: GET
           path: /get_login/{id_login}
-  delete_login:
-    handler: src/API/login/deleteLogin.delete
-    events:
-      - httpApi:
-          method: DELETE
-          path: /delete_login/{id_login}
   update_login:
     handler: src/API/login/updateLogin.update
     events:
       - httpApi:
           method: PUT
           path: /update_login/{id_login}
-
+  delete_cards:
+    handler: src/API/cards/deleteCards.delete
+    events:
+      - httpApi:
+          method: DELETE
+          path: /deleteCards/{id_card}
+  delete_login:
+    handler: src/API/login/deleteLogin.delete
+    events:
+      - httpApi:
+          method: DELETE
+          path: /delete_login/{id_login}

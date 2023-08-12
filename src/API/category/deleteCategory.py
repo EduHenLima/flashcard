@@ -8,13 +8,13 @@ def delete(req, context):
     req = json.loads(req['body'])
 
     with get_session() as session:
-        user = session.query(Categorys).filter(Categorys.id_categoria == req['id_categoria']).one()
+        user = session.query(Categorys).filter(Categorys.id_categoria == req['pathParameters']['id_categoria']).one()
         session.delete(user)
         session.commit()
 
     body = {
         "message": "Success!",
-        'Deleted': 'ID: ' + str(req['id_categoria']),
+        'Deleted': 'ID: ' + str(req['pathParameters']['id_categoria']),
     }
 
     return json.dumps({"statusCode": 200, "body": body})

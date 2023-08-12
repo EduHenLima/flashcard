@@ -8,17 +8,13 @@ from src.Model.cards import Cards
 
 def create(req, context):
     req = json.loads(req['body'])
-
     commit_insert(insert(Cards).values(pergunta=req['pergunta'], resposta=req['resposta'], id_assunto=req['id_assunto'], ativo=req['ativo']))
 
     body = {
-        "message": "Success!",
-        "Created": {
-            "pergunta": req['pergunta'],
-            "resposta": req['resposta'],
-            "id_assunto": req['id_assunto'],
-            "ativo":  req['ativo']
-        },
+        "pergunta": req['pergunta'],
+        "resposta": req['resposta'],
+        "id_assunto": req['id_assunto'],
+        "ativo":  req['ativo']
     }
 
-    return json.dumps({"statusCode": 200, "body": body})
+    return json.dumps({body})

@@ -2,7 +2,7 @@
 serverless invoke local --function get_topic
 
 -- by category
-serverless invoke local --function get_topic_by_category -d '{"pathParameters":{"id_categoria":"2"}}'
+serverless invoke local --function get_topic_by_category -d '{"pathParameters":{"id_categoria":2}}'
 
 -- Create Topic
 serverless invoke local --function create_topic --data '{
