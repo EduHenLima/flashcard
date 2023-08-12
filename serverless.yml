@@ -33,12 +33,6 @@ functions:
     handler: src/API/cards/createCards.create
     events:
       - httpApi: 'POST /create_cards'
-  get_cards:
-    handler: src/API/cards/readCards.read
-    events:
-      - httpApi:
-          method: GET
-          path: /readCards/{id_card}
   get_cards_by_topic:
     handler: src/API/cards/getCardsByTopic.get_cards_by_topic
     events:
@@ -57,24 +51,12 @@ functions:
     handler: src/API/topic/createTopic.create
     events:
       - httpApi: 'POST /create_topic'
-  get_topic:
-    handler: src/API/topic/readTopic.read
-    events:
-      - httpApi:
-          method: GET
-          path: /get_topic/{id_topic}
   get_topic_by_category:
     handler: src/API/topic/getTopicByCategory.get_topic_by_category
     events:
       - httpApi:
           method: GET
           path: /get_topic_by_category/{id_categoria}
-  delete_topic:
-    handler: src/API/topic/deleteTopic.delete
-    events:
-      - httpApi:
-          method: DELETE
-          path: /delete_topic/{id_topic}
   update_topic:
     handler: src/API/topic/updateTopic.update
     events:
@@ -87,12 +69,6 @@ functions:
     handler: src/API/category/createCategory.create
     events:
       - httpApi: 'POST /create_category'
-  get_category:
-    handler: src/API/category/readCategory.read
-    events:
-      - httpApi:
-          method: GET
-          path: /get_category/{id_category}
   get_category_by_user:
     handler: src/API/category/getCategoryByUser.get_category_by_user
     events:
@@ -105,32 +81,9 @@ functions:
       - httpApi:
           method: PUT
           path: /update_category/{id_category}
+
   # To manager login
   create_login:
     handler: src/API/login/createLogin.create
     events:
       - httpApi: 'POST /create_login'
-  get_login:
-    handler: src/API/login/readLogin.read
-    events:
-      - httpApi:
-          method: GET
-          path: /get_login/{id_login}
-  update_login:
-    handler: src/API/login/updateLogin.update
-    events:
-      - httpApi:
-          method: PUT
-          path: /update_login/{id_login}
-  delete_cards:
-    handler: src/API/cards/deleteCards.delete
-    events:
-      - httpApi:
-          method: DELETE
-          path: /deleteCards/{id_card}
-  delete_login:
-    handler: src/API/login/deleteLogin.delete
-    events:
-      - httpApi:
-          method: DELETE
-          path: /delete_login/{id_login}
