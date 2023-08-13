@@ -5,25 +5,27 @@ from src.Model.cards import Cards
 
 
 def update(req, context):
-    req = json.loads(req['body'])
+    id_card = req['pathParameters']['id_card']
+    body = json.loads(req['body'])
 
     with get_session() as session:
-        session.query(Cards).filter(Cards.id_card == req['id_card']).update({
-            Cards.id_assunto: req['id_assunto'],
-            Cards.pergunta: req['pergunta'],
-            Cards.resposta: req['resposta'],
-            Cards.ativo: req['ativo']
+        session.query(Cards).filter(Cards.id_card == id_card).update({
+            Cards.id_assunto: body['id_assunto'],
+            Cards.pergunta: body['pergunta'],
+            Cards.resposta: body['resposta'],
+            Cards.ativo: body['ativo']
         })
         session.commit()
 
     body = {
         "message": "Success!",
         'Params Updated': {
-            'id_assunto': req['id_assunto'],
-            'pergunta': req['pergunta'],
-            'resposta': req['resposta'],
-            'ativo': req['ativo']
+            'id_card': id_card,
+            'id_assunto': body['id_assunto'],
+            'pergunta': body['pergunta'],
+            'resposta': body['resposta'],
+            'ativo': body['ativo']
         }
     }
 
-    return json.dumps({"statusCode": 200, "body": body})
+    return json.dumps(body)

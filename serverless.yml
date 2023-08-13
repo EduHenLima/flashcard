@@ -76,7 +76,7 @@ functions:
           method: GET
           path: /get_category_by_user/{id_usuario}
   update_category:
-    handler: src/API/category/updateCategory.update
+    handler: src/API/category/updateCategory.updated
     events:
       - httpApi:
           method: PUT

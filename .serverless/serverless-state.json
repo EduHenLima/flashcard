@@ -101,12 +101,6 @@
               "LogGroupName": "/aws/lambda/aws-python-dev-create_cards"
             }
           },
-          "GetUnderscorecardsLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/aws-python-dev-get_cards"
-            }
-          },
           "GetUnderscorecardsUnderscorebyUnderscoretopicLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
@@ -123,12 +117,6 @@
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
               "LogGroupName": "/aws/lambda/aws-python-dev-create_topic"
-            }
-          },
-          "GetUnderscoretopicLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/aws-python-dev-get_topic"
             }
           },
           "GetUnderscoretopicUnderscorebyUnderscorecategoryLogGroup": {
@@ -149,12 +137,6 @@
               "LogGroupName": "/aws/lambda/aws-python-dev-create_category"
             }
           },
-          "GetUnderscorecategoryLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/aws-python-dev-get_category"
-            }
-          },
           "GetUnderscorecategoryUnderscorebyUnderscoreuserLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
@@ -171,18 +153,6 @@
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
               "LogGroupName": "/aws/lambda/aws-python-dev-create_login"
-            }
-          },
-          "GetUnderscoreloginLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/aws-python-dev-get_login"
-            }
-          },
-          "UpdateUnderscoreloginLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/aws-python-dev-update_login"
             }
           },
           "IamRoleLambdaExecution": {
@@ -309,12 +279,6 @@
                           },
                           {
                             "Fn::GetAtt": [
-                              "GetUnderscorecardsLogGroup",
-                              "Arn"
-                            ]
-                          },
-                          {
-                            "Fn::GetAtt": [
                               "GetUnderscorecardsUnderscorebyUnderscoretopicLogGroup",
                               "Arn"
                             ]
@@ -328,12 +292,6 @@
                           {
                             "Fn::GetAtt": [
                               "CreateUnderscoretopicLogGroup",
-                              "Arn"
-                            ]
-                          },
-                          {
-                            "Fn::GetAtt": [
-                              "GetUnderscoretopicLogGroup",
                               "Arn"
                             ]
                           },
@@ -357,12 +315,6 @@
                           },
                           {
                             "Fn::GetAtt": [
-                              "GetUnderscorecategoryLogGroup",
-                              "Arn"
-                            ]
-                          },
-                          {
-                            "Fn::GetAtt": [
                               "GetUnderscorecategoryUnderscorebyUnderscoreuserLogGroup",
                               "Arn"
                             ]
@@ -376,18 +328,6 @@
                           {
                             "Fn::GetAtt": [
                               "CreateUnderscoreloginLogGroup",
-                              "Arn"
-                            ]
-                          },
-                          {
-                            "Fn::GetAtt": [
-                              "GetUnderscoreloginLogGroup",
-                              "Arn"
-                            ]
-                          },
-                          {
-                            "Fn::GetAtt": [
-                              "UpdateUnderscoreloginLogGroup",
                               "Arn"
                             ]
                           }
@@ -406,7 +346,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_ping.handler",
               "Runtime": "python3.9",
@@ -439,7 +379,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_create_cards.handler",
               "Runtime": "python3.9",
@@ -465,39 +405,6 @@
               "CreateUnderscorecardsLogGroup"
             ]
           },
-          "GetUnderscorecardsLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
-              },
-              "Handler": "s_get_cards.handler",
-              "Runtime": "python3.9",
-              "FunctionName": "aws-python-dev-get_cards",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "host": "dev-flashcard.cluster-cpceqjvumies.us-east-1.rds.amazonaws.com",
-                  "user": "flash",
-                  "password": "flashcard",
-                  "database": "flashcards"
-                }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "GetUnderscorecardsLogGroup"
-            ]
-          },
           "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -505,7 +412,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_get_cards_by_topic.handler",
               "Runtime": "python3.9",
@@ -538,7 +445,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_update_cards.handler",
               "Runtime": "python3.9",
@@ -571,7 +478,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_create_topic.handler",
               "Runtime": "python3.9",
@@ -597,39 +504,6 @@
               "CreateUnderscoretopicLogGroup"
             ]
           },
-          "GetUnderscoretopicLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
-              },
-              "Handler": "s_get_topic.handler",
-              "Runtime": "python3.9",
-              "FunctionName": "aws-python-dev-get_topic",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "host": "dev-flashcard.cluster-cpceqjvumies.us-east-1.rds.amazonaws.com",
-                  "user": "flash",
-                  "password": "flashcard",
-                  "database": "flashcards"
-                }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "GetUnderscoretopicLogGroup"
-            ]
-          },
           "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -637,7 +511,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_get_topic_by_category.handler",
               "Runtime": "python3.9",
@@ -670,7 +544,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_update_topic.handler",
               "Runtime": "python3.9",
@@ -703,7 +577,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_create_category.handler",
               "Runtime": "python3.9",
@@ -729,39 +603,6 @@
               "CreateUnderscorecategoryLogGroup"
             ]
           },
-          "GetUnderscorecategoryLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
-              },
-              "Handler": "s_get_category.handler",
-              "Runtime": "python3.9",
-              "FunctionName": "aws-python-dev-get_category",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "host": "dev-flashcard.cluster-cpceqjvumies.us-east-1.rds.amazonaws.com",
-                  "user": "flash",
-                  "password": "flashcard",
-                  "database": "flashcards"
-                }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "GetUnderscorecategoryLogGroup"
-            ]
-          },
           "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -769,7 +610,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_get_category_by_user.handler",
               "Runtime": "python3.9",
@@ -802,7 +643,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_update_category.handler",
               "Runtime": "python3.9",
@@ -835,7 +676,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
+                "S3Key": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z/aws-python.zip"
               },
               "Handler": "s_create_login.handler",
               "Runtime": "python3.9",
@@ -861,230 +702,114 @@
               "CreateUnderscoreloginLogGroup"
             ]
           },
-          "GetUnderscoreloginLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
-              },
-              "Handler": "s_get_login.handler",
-              "Runtime": "python3.9",
-              "FunctionName": "aws-python-dev-get_login",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "host": "dev-flashcard.cluster-cpceqjvumies.us-east-1.rds.amazonaws.com",
-                  "user": "flash",
-                  "password": "flashcard",
-                  "database": "flashcards"
-                }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "GetUnderscoreloginLogGroup"
-            ]
-          },
-          "UpdateUnderscoreloginLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z/aws-python.zip"
-              },
-              "Handler": "s_update_login.handler",
-              "Runtime": "python3.9",
-              "FunctionName": "aws-python-dev-update_login",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "host": "dev-flashcard.cluster-cpceqjvumies.us-east-1.rds.amazonaws.com",
-                  "user": "flash",
-                  "password": "flashcard",
-                  "database": "flashcards"
-                }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "UpdateUnderscoreloginLogGroup"
-            ]
-          },
-          "PingLambdaVersion2NXuYuFpzfS2IJTwKiSCS8s1XfT9esyWT05SJakEag": {
+          "PingLambdaVersionV5Tdf9NPLeYKgQFx5kQC35DFAm8uOEMrYrzeQSygLg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PingLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "CreateUnderscorecardsLambdaVersiono2TKywfLUvYF6ZOydUGllzozHo80qgf7KSSMbsuTATc": {
+          "CreateUnderscorecardsLambdaVersionpg6ZeD83uil50bAjhofyZRgMj4dl4xM4lF54RXzp0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateUnderscorecardsLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "GetUnderscorecardsLambdaVersionZhmJnu57H275Bg7jX07Q0jRQQOyFNCek0t9lt3pjD8": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GetUnderscorecardsLambdaFunction"
-              },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
-            }
-          },
-          "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaVersionq0MfJ29YLXXzejlR4zuB9MwMi2J0UdiFZ1AwraEMjKI": {
+          "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaVersione0yug4qAt80m8GnSBkwizG1cttAiS1mgBfL1EAKFg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "UpdateUnderscorecardsLambdaVersion5IS97j9yoHtAfrHXW9AokBtSwdy7GAuuKsmGxDG026M": {
+          "UpdateUnderscorecardsLambdaVersionwJgT8iglvZ8KFU8oUiOhAEOdPx4Be0FmdOAyMNo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateUnderscorecardsLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "CreateUnderscoretopicLambdaVersionTOPlbg6kpjx7xAeXozxdVh5waGDfpO46EVVM5QntQE": {
+          "CreateUnderscoretopicLambdaVersionWuXKHrcDmuZOGRIQEF2auYaL9op4KxYPMy8Iv4QEsU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateUnderscoretopicLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "GetUnderscoretopicLambdaVersionGCAxjGmPEr7hwilwhZSMOWs9fbwHXvsqXqNFbs": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GetUnderscoretopicLambdaFunction"
-              },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
-            }
-          },
-          "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaVersionsSzmeZjKlUkgsoROHhwX6dJC4tM8UvxlULw2PM130": {
+          "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaVersionD9PD2BIWZiN7ZGYBekhFdggGtskFnMCXQovKeOhbcE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "UpdateUnderscoretopicLambdaVersionYmXbpcRLM44HDOS7Dp7i1Fx3g1Lzascce9lz3GqnL0": {
+          "UpdateUnderscoretopicLambdaVersion6MFiBXfEt6TqrDc4INAOJ3XjjFzC7gN5NhlooKIjY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateUnderscoretopicLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "CreateUnderscorecategoryLambdaVersion8Hvp6qAI21LLaRZehxLqpDbCSz9K0RqyoYvwNNNk": {
+          "CreateUnderscorecategoryLambdaVersionFY7pKEauhHYVnVt9vbjsnM1veVYWmZP37zCkmdDEEAo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateUnderscorecategoryLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "GetUnderscorecategoryLambdaVersionK2kLJGz7DC02eraVl8o8myePzifa72KxUpybpBHY": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GetUnderscorecategoryLambdaFunction"
-              },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
-            }
-          },
-          "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaVersionrwhixvfkpjkdK25mQdfPqwkFgEMS8jCGQ9BfVioBWsk": {
+          "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaVersion962ze7yIeNfRJaKSW7WdAxvqtQPHrrVrBipY3wCWs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "UpdateUnderscorecategoryLambdaVersion5PngxJ1TxJ21GLZRPvLKGRhMDXtn8PD1yjUKQyUmgU": {
+          "UpdateUnderscorecategoryLambdaVersionRaPrf4CY4exxiU01nwc1vE7fdHJESc7NWrI4HNjvJM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateUnderscorecategoryLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
-          "CreateUnderscoreloginLambdaVersionCamsN1vwI9nCxhuj02fcZakkDesfLU4iqJcgKDAYBk8": {
+          "CreateUnderscoreloginLambdaVersionVADAB3AATLIxFhxocNTe1QEn7lpeDuLLZ69E9d1MKdc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateUnderscoreloginLambdaFunction"
               },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
-            }
-          },
-          "GetUnderscoreloginLambdaVersion9GtlP6AhWoz8wLkEMxNkh2Jp6GHvppm2lhEUdZHuEig": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "GetUnderscoreloginLambdaFunction"
-              },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
-            }
-          },
-          "UpdateUnderscoreloginLambdaVersionfh3VGHFj5flU6OppfBEAjiZWmmPp5vUR3xHI3DiE": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "UpdateUnderscoreloginLambdaFunction"
-              },
-              "CodeSha256": "mbiN3RmSqfYmPB009OcTv11eLD1MXs8KakmlYeYdsqg="
+              "CodeSha256": "qw8PanCM6VerbPsWyWJ+SMboNWd5ht1hfhUBPiLkonI="
             }
           },
           "HttpApi": {
@@ -1266,78 +991,6 @@
               }
             },
             "DependsOn": "HttpApiIntegrationCreateUnderscorecards"
-          },
-          "GetUnderscorecardsLambdaPermissionHttpApi": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "GetUnderscorecardsLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "HttpApi"
-                    },
-                    "/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "HttpApiIntegrationGetUnderscorecards": {
-            "Type": "AWS::ApiGatewayV2::Integration",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "IntegrationType": "AWS_PROXY",
-              "IntegrationUri": {
-                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"GetUnderscorecardsLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
-              },
-              "PayloadFormatVersion": "2.0",
-              "TimeoutInMillis": 30000
-            }
-          },
-          "HttpApiRouteGetReadcardsIdcardVar": {
-            "Type": "AWS::ApiGatewayV2::Route",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "RouteKey": "GET /readCards/{id_card}",
-              "Target": {
-                "Fn::Join": [
-                  "/",
-                  [
-                    "integrations",
-                    {
-                      "Ref": "HttpApiIntegrationGetUnderscorecards"
-                    }
-                  ]
-                ]
-              }
-            },
-            "DependsOn": "HttpApiIntegrationGetUnderscorecards"
           },
           "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaPermissionHttpApi": {
             "Type": "AWS::Lambda::Permission",
@@ -1555,78 +1208,6 @@
             },
             "DependsOn": "HttpApiIntegrationCreateUnderscoretopic"
           },
-          "GetUnderscoretopicLambdaPermissionHttpApi": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "GetUnderscoretopicLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "HttpApi"
-                    },
-                    "/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "HttpApiIntegrationGetUnderscoretopic": {
-            "Type": "AWS::ApiGatewayV2::Integration",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "IntegrationType": "AWS_PROXY",
-              "IntegrationUri": {
-                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"GetUnderscoretopicLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
-              },
-              "PayloadFormatVersion": "2.0",
-              "TimeoutInMillis": 30000
-            }
-          },
-          "HttpApiRouteGetGettopicIdtopicVar": {
-            "Type": "AWS::ApiGatewayV2::Route",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "RouteKey": "GET /get_topic/{id_topic}",
-              "Target": {
-                "Fn::Join": [
-                  "/",
-                  [
-                    "integrations",
-                    {
-                      "Ref": "HttpApiIntegrationGetUnderscoretopic"
-                    }
-                  ]
-                ]
-              }
-            },
-            "DependsOn": "HttpApiIntegrationGetUnderscoretopic"
-          },
           "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaPermissionHttpApi": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
@@ -1842,78 +1423,6 @@
               }
             },
             "DependsOn": "HttpApiIntegrationCreateUnderscorecategory"
-          },
-          "GetUnderscorecategoryLambdaPermissionHttpApi": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "GetUnderscorecategoryLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "HttpApi"
-                    },
-                    "/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "HttpApiIntegrationGetUnderscorecategory": {
-            "Type": "AWS::ApiGatewayV2::Integration",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "IntegrationType": "AWS_PROXY",
-              "IntegrationUri": {
-                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"GetUnderscorecategoryLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
-              },
-              "PayloadFormatVersion": "2.0",
-              "TimeoutInMillis": 30000
-            }
-          },
-          "HttpApiRouteGetGetcategoryIdcategoryVar": {
-            "Type": "AWS::ApiGatewayV2::Route",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "RouteKey": "GET /get_category/{id_category}",
-              "Target": {
-                "Fn::Join": [
-                  "/",
-                  [
-                    "integrations",
-                    {
-                      "Ref": "HttpApiIntegrationGetUnderscorecategory"
-                    }
-                  ]
-                ]
-              }
-            },
-            "DependsOn": "HttpApiIntegrationGetUnderscorecategory"
           },
           "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaPermissionHttpApi": {
             "Type": "AWS::Lambda::Permission",
@@ -2131,150 +1640,6 @@
             },
             "DependsOn": "HttpApiIntegrationCreateUnderscorelogin"
           },
-          "GetUnderscoreloginLambdaPermissionHttpApi": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "GetUnderscoreloginLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "HttpApi"
-                    },
-                    "/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "HttpApiIntegrationGetUnderscorelogin": {
-            "Type": "AWS::ApiGatewayV2::Integration",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "IntegrationType": "AWS_PROXY",
-              "IntegrationUri": {
-                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"GetUnderscoreloginLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
-              },
-              "PayloadFormatVersion": "2.0",
-              "TimeoutInMillis": 30000
-            }
-          },
-          "HttpApiRouteGetGetloginIdloginVar": {
-            "Type": "AWS::ApiGatewayV2::Route",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "RouteKey": "GET /get_login/{id_login}",
-              "Target": {
-                "Fn::Join": [
-                  "/",
-                  [
-                    "integrations",
-                    {
-                      "Ref": "HttpApiIntegrationGetUnderscorelogin"
-                    }
-                  ]
-                ]
-              }
-            },
-            "DependsOn": "HttpApiIntegrationGetUnderscorelogin"
-          },
-          "UpdateUnderscoreloginLambdaPermissionHttpApi": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "UpdateUnderscoreloginLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "HttpApi"
-                    },
-                    "/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "HttpApiIntegrationUpdateUnderscorelogin": {
-            "Type": "AWS::ApiGatewayV2::Integration",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "IntegrationType": "AWS_PROXY",
-              "IntegrationUri": {
-                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"UpdateUnderscoreloginLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
-              },
-              "PayloadFormatVersion": "2.0",
-              "TimeoutInMillis": 30000
-            }
-          },
-          "HttpApiRoutePutUpdateloginIdloginVar": {
-            "Type": "AWS::ApiGatewayV2::Route",
-            "Properties": {
-              "ApiId": {
-                "Ref": "HttpApi"
-              },
-              "RouteKey": "PUT /updateLogin/{id_login}",
-              "Target": {
-                "Fn::Join": [
-                  "/",
-                  [
-                    "integrations",
-                    {
-                      "Ref": "HttpApiIntegrationUpdateUnderscorelogin"
-                    }
-                  ]
-                ]
-              }
-            },
-            "DependsOn": "HttpApiIntegrationUpdateUnderscorelogin"
-          },
           "CWLSubFilterPingLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
@@ -2292,16 +1657,6 @@
               "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
               "LogGroupName": {
                 "Ref": "CreateUnderscorecardsLogGroup"
-              }
-            }
-          },
-          "CWLSubFilterGetUnderscorecardsLogGroupUsEast1": {
-            "Type": "AWS::Logs::SubscriptionFilter",
-            "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
-              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
-              "LogGroupName": {
-                "Ref": "GetUnderscorecardsLogGroup"
               }
             }
           },
@@ -2335,16 +1690,6 @@
               }
             }
           },
-          "CWLSubFilterGetUnderscoretopicLogGroupUsEast1": {
-            "Type": "AWS::Logs::SubscriptionFilter",
-            "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
-              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
-              "LogGroupName": {
-                "Ref": "GetUnderscoretopicLogGroup"
-              }
-            }
-          },
           "CWLSubFilterGetUnderscoretopicUnderscorebyUnderscorecategoryLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
@@ -2375,16 +1720,6 @@
               }
             }
           },
-          "CWLSubFilterGetUnderscorecategoryLogGroupUsEast1": {
-            "Type": "AWS::Logs::SubscriptionFilter",
-            "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
-              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
-              "LogGroupName": {
-                "Ref": "GetUnderscorecategoryLogGroup"
-              }
-            }
-          },
           "CWLSubFilterGetUnderscorecategoryUnderscorebyUnderscoreuserLogGroupUsEast1": {
             "Type": "AWS::Logs::SubscriptionFilter",
             "Properties": {
@@ -2412,26 +1747,6 @@
               "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
               "LogGroupName": {
                 "Ref": "CreateUnderscoreloginLogGroup"
-              }
-            }
-          },
-          "CWLSubFilterGetUnderscoreloginLogGroupUsEast1": {
-            "Type": "AWS::Logs::SubscriptionFilter",
-            "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
-              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
-              "LogGroupName": {
-                "Ref": "GetUnderscoreloginLogGroup"
-              }
-            }
-          },
-          "CWLSubFilterUpdateUnderscoreloginLogGroupUsEast1": {
-            "Type": "AWS::Logs::SubscriptionFilter",
-            "Properties": {
-              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:2763e3ef-f172-4ee5-8198-690f45460aa4#rJLvSqJJ1dbtgBPc1K#aws-python#dev",
-              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
-              "LogGroupName": {
-                "Ref": "UpdateUnderscoreloginLogGroup"
               }
             }
           },
@@ -2469,7 +1784,7 @@
           "PingLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PingLambdaVersion2NXuYuFpzfS2IJTwKiSCS8s1XfT9esyWT05SJakEag"
+              "Ref": "PingLambdaVersionV5Tdf9NPLeYKgQFx5kQC35DFAm8uOEMrYrzeQSygLg"
             },
             "Export": {
               "Name": "sls-aws-python-dev-PingLambdaFunctionQualifiedArn"
@@ -2478,25 +1793,16 @@
           "CreateUnderscorecardsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateUnderscorecardsLambdaVersiono2TKywfLUvYF6ZOydUGllzozHo80qgf7KSSMbsuTATc"
+              "Ref": "CreateUnderscorecardsLambdaVersionpg6ZeD83uil50bAjhofyZRgMj4dl4xM4lF54RXzp0"
             },
             "Export": {
               "Name": "sls-aws-python-dev-CreateUnderscorecardsLambdaFunctionQualifiedArn"
             }
           },
-          "GetUnderscorecardsLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "GetUnderscorecardsLambdaVersionZhmJnu57H275Bg7jX07Q0jRQQOyFNCek0t9lt3pjD8"
-            },
-            "Export": {
-              "Name": "sls-aws-python-dev-GetUnderscorecardsLambdaFunctionQualifiedArn"
-            }
-          },
           "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaVersionq0MfJ29YLXXzejlR4zuB9MwMi2J0UdiFZ1AwraEMjKI"
+              "Ref": "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaVersione0yug4qAt80m8GnSBkwizG1cttAiS1mgBfL1EAKFg"
             },
             "Export": {
               "Name": "sls-aws-python-dev-GetUnderscorecardsUnderscorebyUnderscoretopicLambdaFunctionQualifiedArn"
@@ -2505,7 +1811,7 @@
           "UpdateUnderscorecardsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateUnderscorecardsLambdaVersion5IS97j9yoHtAfrHXW9AokBtSwdy7GAuuKsmGxDG026M"
+              "Ref": "UpdateUnderscorecardsLambdaVersionwJgT8iglvZ8KFU8oUiOhAEOdPx4Be0FmdOAyMNo"
             },
             "Export": {
               "Name": "sls-aws-python-dev-UpdateUnderscorecardsLambdaFunctionQualifiedArn"
@@ -2514,25 +1820,16 @@
           "CreateUnderscoretopicLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateUnderscoretopicLambdaVersionTOPlbg6kpjx7xAeXozxdVh5waGDfpO46EVVM5QntQE"
+              "Ref": "CreateUnderscoretopicLambdaVersionWuXKHrcDmuZOGRIQEF2auYaL9op4KxYPMy8Iv4QEsU"
             },
             "Export": {
               "Name": "sls-aws-python-dev-CreateUnderscoretopicLambdaFunctionQualifiedArn"
             }
           },
-          "GetUnderscoretopicLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "GetUnderscoretopicLambdaVersionGCAxjGmPEr7hwilwhZSMOWs9fbwHXvsqXqNFbs"
-            },
-            "Export": {
-              "Name": "sls-aws-python-dev-GetUnderscoretopicLambdaFunctionQualifiedArn"
-            }
-          },
           "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaVersionsSzmeZjKlUkgsoROHhwX6dJC4tM8UvxlULw2PM130"
+              "Ref": "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaVersionD9PD2BIWZiN7ZGYBekhFdggGtskFnMCXQovKeOhbcE"
             },
             "Export": {
               "Name": "sls-aws-python-dev-GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaFunctionQualifiedArn"
@@ -2541,7 +1838,7 @@
           "UpdateUnderscoretopicLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateUnderscoretopicLambdaVersionYmXbpcRLM44HDOS7Dp7i1Fx3g1Lzascce9lz3GqnL0"
+              "Ref": "UpdateUnderscoretopicLambdaVersion6MFiBXfEt6TqrDc4INAOJ3XjjFzC7gN5NhlooKIjY"
             },
             "Export": {
               "Name": "sls-aws-python-dev-UpdateUnderscoretopicLambdaFunctionQualifiedArn"
@@ -2550,25 +1847,16 @@
           "CreateUnderscorecategoryLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateUnderscorecategoryLambdaVersion8Hvp6qAI21LLaRZehxLqpDbCSz9K0RqyoYvwNNNk"
+              "Ref": "CreateUnderscorecategoryLambdaVersionFY7pKEauhHYVnVt9vbjsnM1veVYWmZP37zCkmdDEEAo"
             },
             "Export": {
               "Name": "sls-aws-python-dev-CreateUnderscorecategoryLambdaFunctionQualifiedArn"
             }
           },
-          "GetUnderscorecategoryLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "GetUnderscorecategoryLambdaVersionK2kLJGz7DC02eraVl8o8myePzifa72KxUpybpBHY"
-            },
-            "Export": {
-              "Name": "sls-aws-python-dev-GetUnderscorecategoryLambdaFunctionQualifiedArn"
-            }
-          },
           "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaVersionrwhixvfkpjkdK25mQdfPqwkFgEMS8jCGQ9BfVioBWsk"
+              "Ref": "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaVersion962ze7yIeNfRJaKSW7WdAxvqtQPHrrVrBipY3wCWs"
             },
             "Export": {
               "Name": "sls-aws-python-dev-GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaFunctionQualifiedArn"
@@ -2577,7 +1865,7 @@
           "UpdateUnderscorecategoryLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateUnderscorecategoryLambdaVersion5PngxJ1TxJ21GLZRPvLKGRhMDXtn8PD1yjUKQyUmgU"
+              "Ref": "UpdateUnderscorecategoryLambdaVersionRaPrf4CY4exxiU01nwc1vE7fdHJESc7NWrI4HNjvJM"
             },
             "Export": {
               "Name": "sls-aws-python-dev-UpdateUnderscorecategoryLambdaFunctionQualifiedArn"
@@ -2586,28 +1874,10 @@
           "CreateUnderscoreloginLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateUnderscoreloginLambdaVersionCamsN1vwI9nCxhuj02fcZakkDesfLU4iqJcgKDAYBk8"
+              "Ref": "CreateUnderscoreloginLambdaVersionVADAB3AATLIxFhxocNTe1QEn7lpeDuLLZ69E9d1MKdc"
             },
             "Export": {
               "Name": "sls-aws-python-dev-CreateUnderscoreloginLambdaFunctionQualifiedArn"
-            }
-          },
-          "GetUnderscoreloginLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "GetUnderscoreloginLambdaVersion9GtlP6AhWoz8wLkEMxNkh2Jp6GHvppm2lhEUdZHuEig"
-            },
-            "Export": {
-              "Name": "sls-aws-python-dev-GetUnderscoreloginLambdaFunctionQualifiedArn"
-            }
-          },
-          "UpdateUnderscoreloginLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "UpdateUnderscoreloginLambdaVersionfh3VGHFj5flU6OppfBEAjiZWmmPp5vUR3xHI3DiE"
-            },
-            "Export": {
-              "Name": "sls-aws-python-dev-UpdateUnderscoreloginLambdaFunctionQualifiedArn"
             }
           },
           "HttpApiId": {
@@ -2761,7 +2031,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "PingLambdaVersion2NXuYuFpzfS2IJTwKiSCS8s1XfT9esyWT05SJakEag"
+        "versionLogicalId": "PingLambdaVersionV5Tdf9NPLeYKgQFx5kQC35DFAm8uOEMrYrzeQSygLg"
       },
       "create_cards": {
         "handler": "s_create_cards.handler",
@@ -2778,27 +2048,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "CreateUnderscorecardsLambdaVersiono2TKywfLUvYF6ZOydUGllzozHo80qgf7KSSMbsuTATc"
-      },
-      "get_cards": {
-        "handler": "s_get_cards.handler",
-        "events": [
-          {
-            "httpApi": {
-              "method": "GET",
-              "path": "/readCards/{id_card}"
-            },
-            "resolvedMethod": "GET",
-            "resolvedPath": "/readCards/{id_card}"
-          }
-        ],
-        "name": "aws-python-dev-get_cards",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "python3.9",
-        "vpc": {},
-        "versionLogicalId": "GetUnderscorecardsLambdaVersionZhmJnu57H275Bg7jX07Q0jRQQOyFNCek0t9lt3pjD8"
+        "versionLogicalId": "CreateUnderscorecardsLambdaVersionpg6ZeD83uil50bAjhofyZRgMj4dl4xM4lF54RXzp0"
       },
       "get_cards_by_topic": {
         "handler": "s_get_cards_by_topic.handler",
@@ -2818,7 +2068,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaVersionq0MfJ29YLXXzejlR4zuB9MwMi2J0UdiFZ1AwraEMjKI"
+        "versionLogicalId": "GetUnderscorecardsUnderscorebyUnderscoretopicLambdaVersione0yug4qAt80m8GnSBkwizG1cttAiS1mgBfL1EAKFg"
       },
       "update_cards": {
         "handler": "s_update_cards.handler",
@@ -2838,7 +2088,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "UpdateUnderscorecardsLambdaVersion5IS97j9yoHtAfrHXW9AokBtSwdy7GAuuKsmGxDG026M"
+        "versionLogicalId": "UpdateUnderscorecardsLambdaVersionwJgT8iglvZ8KFU8oUiOhAEOdPx4Be0FmdOAyMNo"
       },
       "create_topic": {
         "handler": "s_create_topic.handler",
@@ -2855,27 +2105,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "CreateUnderscoretopicLambdaVersionTOPlbg6kpjx7xAeXozxdVh5waGDfpO46EVVM5QntQE"
-      },
-      "get_topic": {
-        "handler": "s_get_topic.handler",
-        "events": [
-          {
-            "httpApi": {
-              "method": "GET",
-              "path": "/get_topic/{id_topic}"
-            },
-            "resolvedMethod": "GET",
-            "resolvedPath": "/get_topic/{id_topic}"
-          }
-        ],
-        "name": "aws-python-dev-get_topic",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "python3.9",
-        "vpc": {},
-        "versionLogicalId": "GetUnderscoretopicLambdaVersionGCAxjGmPEr7hwilwhZSMOWs9fbwHXvsqXqNFbs"
+        "versionLogicalId": "CreateUnderscoretopicLambdaVersionWuXKHrcDmuZOGRIQEF2auYaL9op4KxYPMy8Iv4QEsU"
       },
       "get_topic_by_category": {
         "handler": "s_get_topic_by_category.handler",
@@ -2895,7 +2125,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaVersionsSzmeZjKlUkgsoROHhwX6dJC4tM8UvxlULw2PM130"
+        "versionLogicalId": "GetUnderscoretopicUnderscorebyUnderscorecategoryLambdaVersionD9PD2BIWZiN7ZGYBekhFdggGtskFnMCXQovKeOhbcE"
       },
       "update_topic": {
         "handler": "s_update_topic.handler",
@@ -2915,7 +2145,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "UpdateUnderscoretopicLambdaVersionYmXbpcRLM44HDOS7Dp7i1Fx3g1Lzascce9lz3GqnL0"
+        "versionLogicalId": "UpdateUnderscoretopicLambdaVersion6MFiBXfEt6TqrDc4INAOJ3XjjFzC7gN5NhlooKIjY"
       },
       "create_category": {
         "handler": "s_create_category.handler",
@@ -2932,27 +2162,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "CreateUnderscorecategoryLambdaVersion8Hvp6qAI21LLaRZehxLqpDbCSz9K0RqyoYvwNNNk"
-      },
-      "get_category": {
-        "handler": "s_get_category.handler",
-        "events": [
-          {
-            "httpApi": {
-              "method": "GET",
-              "path": "/get_category/{id_category}"
-            },
-            "resolvedMethod": "GET",
-            "resolvedPath": "/get_category/{id_category}"
-          }
-        ],
-        "name": "aws-python-dev-get_category",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "python3.9",
-        "vpc": {},
-        "versionLogicalId": "GetUnderscorecategoryLambdaVersionK2kLJGz7DC02eraVl8o8myePzifa72KxUpybpBHY"
+        "versionLogicalId": "CreateUnderscorecategoryLambdaVersionFY7pKEauhHYVnVt9vbjsnM1veVYWmZP37zCkmdDEEAo"
       },
       "get_category_by_user": {
         "handler": "s_get_category_by_user.handler",
@@ -2972,7 +2182,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaVersionrwhixvfkpjkdK25mQdfPqwkFgEMS8jCGQ9BfVioBWsk"
+        "versionLogicalId": "GetUnderscorecategoryUnderscorebyUnderscoreuserLambdaVersion962ze7yIeNfRJaKSW7WdAxvqtQPHrrVrBipY3wCWs"
       },
       "update_category": {
         "handler": "s_update_category.handler",
@@ -2992,7 +2202,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "UpdateUnderscorecategoryLambdaVersion5PngxJ1TxJ21GLZRPvLKGRhMDXtn8PD1yjUKQyUmgU"
+        "versionLogicalId": "UpdateUnderscorecategoryLambdaVersionRaPrf4CY4exxiU01nwc1vE7fdHJESc7NWrI4HNjvJM"
       },
       "create_login": {
         "handler": "s_create_login.handler",
@@ -3009,47 +2219,7 @@
         "timeout": 6,
         "runtime": "python3.9",
         "vpc": {},
-        "versionLogicalId": "CreateUnderscoreloginLambdaVersionCamsN1vwI9nCxhuj02fcZakkDesfLU4iqJcgKDAYBk8"
-      },
-      "get_login": {
-        "handler": "s_get_login.handler",
-        "events": [
-          {
-            "httpApi": {
-              "method": "GET",
-              "path": "/get_login/{id_login}"
-            },
-            "resolvedMethod": "GET",
-            "resolvedPath": "/get_login/{id_login}"
-          }
-        ],
-        "name": "aws-python-dev-get_login",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "python3.9",
-        "vpc": {},
-        "versionLogicalId": "GetUnderscoreloginLambdaVersion9GtlP6AhWoz8wLkEMxNkh2Jp6GHvppm2lhEUdZHuEig"
-      },
-      "update_login": {
-        "handler": "s_update_login.handler",
-        "events": [
-          {
-            "httpApi": {
-              "method": "PUT",
-              "path": "/updateLogin/{id_login}"
-            },
-            "resolvedMethod": "PUT",
-            "resolvedPath": "/updateLogin/{id_login}"
-          }
-        ],
-        "name": "aws-python-dev-update_login",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "python3.9",
-        "vpc": {},
-        "versionLogicalId": "UpdateUnderscoreloginLambdaVersionfh3VGHFj5flU6OppfBEAjiZWmmPp5vUR3xHI3DiE"
+        "versionLogicalId": "CreateUnderscoreloginLambdaVersionVADAB3AATLIxFhxocNTe1QEn7lpeDuLLZ69E9d1MKdc"
       }
     },
     "configValidationMode": "warn",
@@ -3082,7 +2252,7 @@
     "artifact": "/home/www/serverless-flashcard/.serverless/aws-python.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/aws-python/dev/1691880923023-2023-08-12T22:55:23.023Z",
+    "artifactDirectoryName": "serverless/aws-python/dev/1691887661882-2023-08-13T00:47:41.882Z",
     "artifact": "aws-python.zip"
   }
 }

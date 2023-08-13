@@ -16,7 +16,8 @@ serverless invoke local --function create_category --data '{
 serverless invoke local --function delete_category --data '{"id_categoria": 16}'
 
 --Update
-serverless invoke local --function update_category --data '{
+serverless invoke local --function update_category -d '{"pathParameters":{"id_categoria":6}}
+serverless invoke local --function update_category -d '{
     "id_categoria": 16,
     "id_usuario": 4,
     "nome_categoria": "Update Categoria",

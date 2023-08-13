@@ -6,7 +6,7 @@ from src.Model.assuntos import Topics
 
 
 def get_topic_by_category(req, context):
-    topics = get_session().query(Topics).filter(Topics.id_assunto == req['pathParameters']['id_categoria'])
+    topics = get_session().query(Topics).filter(Topics.id_categoria == req['pathParameters']['id_categoria'])
     result = topics.all()
 
     return json.dumps(result, cls=AlchemyEncoder)
